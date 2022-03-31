@@ -36,7 +36,9 @@ namespace Candy_shop
 
         private void AddWorkerButton_Click(object sender, RoutedEventArgs e)
         {
-
+            GetCode getCode = new GetCode();
+            getCode.Show();
+            Close();
         }
     }
 }
