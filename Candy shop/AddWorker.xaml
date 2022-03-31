@@ -85,8 +85,8 @@
 
                     <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox Text="Фамилия" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="489" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                    <TextBox x:Name="lNameTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="489" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
                         </TextBox.Background>
@@ -103,8 +103,8 @@
 
                     <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox Text="Имя" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="552"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="552" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                    <TextBox x:Name="fNameTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="552"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="552" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
                         </TextBox.Background>
@@ -121,8 +121,8 @@
 
                     <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox Text="Отчество" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="490"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="490" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                    <TextBox x:Name="mNameTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="490"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="490" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
                         </TextBox.Background>
@@ -144,8 +144,8 @@
 
                     <Label Content="+7 (" FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox Text="XXX" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="70" TextAlignment="Center"
-                         Padding="5" BorderBrush="#FF4242C1" MaxLength="3" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                    <TextBox FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="70" TextAlignment="Center"
+                         Padding="5" BorderBrush="#FF4242C1" MaxLength="3" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
                         </TextBox.Background>
@@ -153,8 +153,8 @@
 
                     <Label Content=") " FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox Text="XXX" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="70" TextAlignment="Center"
-                         Padding="5" BorderBrush="#FF4242C1" MaxLength="3" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                    <TextBox FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="70" TextAlignment="Center"
+                         Padding="5" BorderBrush="#FF4242C1" MaxLength="3" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
                         </TextBox.Background>
@@ -162,8 +162,8 @@
 
                     <Label Content="-" FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox Text="XX" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="46" TextAlignment="Center"
-                         Padding="5" BorderBrush="#FF4242C1" MaxLength="2" MinWidth="46" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                    <TextBox FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="46" TextAlignment="Center"
+                         Padding="5" BorderBrush="#FF4242C1" MaxLength="2" MinWidth="46" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
                         </TextBox.Background>
@@ -171,8 +171,8 @@
 
                     <Label Content="-" FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox Text="XX" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="46" TextAlignment="Center"
-                         Padding="5" BorderBrush="#FF4242C1" MaxLength="2" MinWidth="46" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                    <TextBox FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="46" TextAlignment="Center"
+                         Padding="5" BorderBrush="#FF4242C1" MaxLength="2" MinWidth="46" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
                         </TextBox.Background>
@@ -201,12 +201,12 @@
 
                 <Label Content=":" FontSize="27" FontFamily="Calibri"/>
 
-                <TextBox Text="Должность" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="766"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="766" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
-                    <TextBox.Background>
-                        <SolidColorBrush Color="White" Opacity="0"/>
-                    </TextBox.Background>
-                </TextBox>
+                <ComboBox x:Name="postComboBox" FontSize="27" BorderThickness="2" FontFamily="Calibri" Margin="5,0,0,0" MaxWidth="766"
+                         Padding="5" MinWidth="766" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand">
+                    <ComboBoxItem Background="#FFBCE38B" Content="Должность 1"/>
+                    <ComboBoxItem Background="#FFBCE38B" Content="Аолжность 2"/>
+                    <ComboBoxItem Background="#FFBCE38B" Content="Волжность 3"/>
+                </ComboBox>
             </StackPanel>
 
             <!-- Пароль -->
@@ -219,8 +219,8 @@
 
                 <Label Content=":" FontSize="27" FontFamily="Calibri"/>
 
-                <TextBox Text="Пароль" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="808"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="808" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                <TextBox FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="808"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="808" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
                     </TextBox.Background>
@@ -237,8 +237,8 @@
 
                 <Label Content=":" FontSize="27" FontFamily="Calibri"/>
 
-                <TextBox Text="Повторите пароль" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="684"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="684" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                <TextBox FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="684"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="684" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
                     </TextBox.Background>
@@ -255,8 +255,26 @@
 
                 <Label Content=":" FontSize="27" FontFamily="Calibri"/>
 
-                <TextBox Text="Дата рождения" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="716"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="716" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+                <TextBox MaxLength="2" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="43"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="43" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBox.Background>
+                        <SolidColorBrush Color="White" Opacity="0"/>
+                    </TextBox.Background>
+                </TextBox>
+
+                <Label Content="." FontSize="27" FontFamily="Calibri" Padding="0,14,0,0"/>
+
+                <TextBox MaxLength="2" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="43"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="43" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBox.Background>
+                        <SolidColorBrush Color="White" Opacity="0"/>
+                    </TextBox.Background>
+                </TextBox>
+
+                <Label Content="." FontSize="27" FontFamily="Calibri" Padding="0,14,0,0"/>
+
+                <TextBox MaxLength="4" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="70"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
                     </TextBox.Background>
@@ -291,7 +309,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <!-- Левая часть --> 
+            <!-- Левая часть -->
             <Border Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF98B18A" MinWidth="170">
                 <Button Content="Отмена" FontSize="30" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 

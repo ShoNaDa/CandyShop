@@ -50,7 +50,7 @@
 
             <Label Margin="20,0,0,0" Content="X—XXX" FontSize="60" FontFamily="Calibri" BorderBrush="#FF4242C1" BorderThickness="0,0,0,2"
                    MinWidth="580" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Padding="5"
-                   VerticalContentAlignment="Center"/>
+                   VerticalContentAlignment="Center" x:Name="uniqCodeLabel"/>
         </StackPanel>
 
         <!-- Нижняя часть -->
