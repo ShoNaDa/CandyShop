@@ -65,8 +65,8 @@
 
             <!-- Правая часть -->
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBox Text="X" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0"
-                Padding="5" BorderBrush="#FF4242C1" MaxLength="1" MinWidth="37" Foreground="Gray">
+                <TextBox MouseEnter="Code1TextBox_MouseEnter"  Text="X" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0"
+                Padding="5" BorderBrush="#FF4242C1" MaxLength="1" MinWidth="37" Foreground="Gray" x:Name="code1TextBox">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
                     </TextBox.Background>
@@ -75,7 +75,7 @@
                 <Label Content="—" FontSize="40" FontFamily="Calibri"/>
 
                 <TextBox Text="XXX" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0"
-                    Padding="5" BorderBrush="#FF4242C1" MaxLength="3" MinWidth="76" Foreground="Gray">
+                    Padding="5" BorderBrush="#FF4242C1" MaxLength="3" MinWidth="76" Foreground="Gray" x:Name="code2TextBox">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
                     </TextBox.Background>
@@ -101,8 +101,8 @@
             </StackPanel>
 
             <!-- Правая часть -->
-            <TextBox Grid.Column="1" Text="Password" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" 
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="550" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
+            <TextBox x:Name="passwordTextBox" Grid.Column="1" Text="Password" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" 
+                         MouseEnter="PasswordTextBox_MouseEnter"  Padding="5" BorderBrush="#FF4242C1" MinWidth="550" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray">
                 <TextBox.Background>
                     <SolidColorBrush Color="White" Opacity="0"/>
                 </TextBox.Background>

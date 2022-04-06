@@ -52,16 +52,16 @@
 
             <!-- Левая часть -->
             <Button HorizontalAlignment="Left" MinHeight="35" MinWidth="35" VerticalAlignment="Bottom" Margin="5"
-                    Cursor="Hand" BorderThickness="2" x:Name="editPhotoButton" Click="editPhotoButton_Click">
+                    Cursor="Hand" BorderThickness="2" x:Name="editPhotoButton" Click="EditPhotoButton_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/EditPhoto.jpg"/>
                 </Button.Background>
 
             </Button>
 
-            <Border HorizontalAlignment="Right" BorderBrush="#FF06A087" BorderThickness="3" Margin="5" MinWidth="230">
+            <Border x:Name="photoBorder" HorizontalAlignment="Right" BorderBrush="#FF06A087" BorderThickness="3" Margin="5" MinWidth="230">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Photo.jpg"/>
+                    <ImageBrush x:Name="image" ImageSource="/Photo.jpg"/>
                 </Border.Background>
 
             </Border>
@@ -144,7 +144,7 @@
 
                     <Label Content="+7 (" FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="70" TextAlignment="Center"
+                    <TextBox FontSize="30" x:Name="phone1TextBox" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="70" TextAlignment="Center"
                          Padding="5" BorderBrush="#FF4242C1" MaxLength="3" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
@@ -153,7 +153,7 @@
 
                     <Label Content=") " FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="70" TextAlignment="Center"
+                    <TextBox x:Name="phone2TextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="70" TextAlignment="Center"
                          Padding="5" BorderBrush="#FF4242C1" MaxLength="3" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
@@ -162,7 +162,7 @@
 
                     <Label Content="-" FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="46" TextAlignment="Center"
+                    <TextBox x:Name="phone3TextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="46" TextAlignment="Center"
                          Padding="5" BorderBrush="#FF4242C1" MaxLength="2" MinWidth="46" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
@@ -171,7 +171,7 @@
 
                     <Label Content="-" FontSize="30" FontFamily="Calibri"/>
 
-                    <TextBox FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="46" TextAlignment="Center"
+                    <TextBox x:Name="phone4TextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" MaxWidth="46" TextAlignment="Center"
                          Padding="5" BorderBrush="#FF4242C1" MaxLength="2" MinWidth="46" HorizontalAlignment="Left" VerticalAlignment="Center">
                         <TextBox.Background>
                             <SolidColorBrush Color="White" Opacity="0"/>
@@ -219,7 +219,7 @@
 
                 <Label Content=":" FontSize="27" FontFamily="Calibri"/>
 
-                <TextBox FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="808"
+                <TextBox x:Name="passwordTextBox" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="808"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="808" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
@@ -237,7 +237,7 @@
 
                 <Label Content=":" FontSize="27" FontFamily="Calibri"/>
 
-                <TextBox FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="684"
+                <TextBox x:Name="repeatPasswordTextBox" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="684"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="684" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
@@ -255,7 +255,7 @@
 
                 <Label Content=":" FontSize="27" FontFamily="Calibri"/>
 
-                <TextBox MaxLength="2" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="43"
+                <TextBox x:Name="dayTextBox" MaxLength="2" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="43"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="43" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
@@ -264,7 +264,7 @@
 
                 <Label Content="." FontSize="27" FontFamily="Calibri" Padding="0,14,0,0"/>
 
-                <TextBox MaxLength="2" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="43"
+                <TextBox x:Name="monthTextBox" MaxLength="2" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="43"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="43" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
@@ -273,7 +273,7 @@
 
                 <Label Content="." FontSize="27" FontFamily="Calibri" Padding="0,14,0,0"/>
 
-                <TextBox MaxLength="4" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="70"
+                <TextBox x:Name="yearTextBox" MaxLength="4" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="70"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="70" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBox.Background>
                         <SolidColorBrush Color="White" Opacity="0"/>
@@ -286,7 +286,7 @@
                 <Border Background="#FF788B8B" CornerRadius="50">
                     <Label Content="?" FontSize="20" FontFamily="Calibri" Padding="9,1,9,0" Cursor="Help" ToolTipService.ShowDuration="60000">
                         <Label.ToolTip>
-                            <ToolTip MaxWidth="700" Background="#FFB1F788" FontSize="15">
+                            <ToolTip Background="#FFB1F788" FontSize="15">
                                 <StackPanel>
                                     <Label Content="1. Поля, помеченные знаком '*' должны быть заполнены;"/>
                                     <Label Content="2. Поля: 'Фамилия', 'Имя', 'Отчество' должны быть написаны кириллицей и начинаться с прописной буквы;"/>
