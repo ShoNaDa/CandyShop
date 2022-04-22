@@ -1,0 +1,140 @@
+﻿<Window x:Class="Candy_shop.MenuDirector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="CandyShop" 
+        Height="700" 
+        Width="1000"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+            <LinearGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                    <RotateTransform Angle="45" CenterY="0.5" CenterX="0.5"/>
+                </TransformGroup>
+            </LinearGradientBrush.RelativeTransform>
+            <GradientStop Color="#FFEE6969"/>
+            <GradientStop Color="#FF8CDA84" Offset="1"/>
+            <GradientStop Color="#FFE2EA91" Offset="0.523"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <TabControl>
+            <TabControl.Background>
+                <SolidColorBrush Color="White" Opacity="0"/>
+            </TabControl.Background>
+
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Сотрудники" FontSize="30" FontFamily="Calibri"/>
+                </TabItem.Header>
+
+                <StackPanel Orientation="Horizontal">
+                    <ListBox MaxWidth="800" MinWidth="800" HorizontalAlignment="Left" Margin="10" Background="#FFCBFDAE" BorderBrush="#FF9A5F9C" 
+                BorderThickness="3" FontSize="47" FontFamily="Calibri" x:Name="WorkersListBox"/>
+
+                    <StackPanel Orientation="Vertical">
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Images/add.png" />
+                            </Border.Background>
+                            <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10"
+                        x:Name="AddButton" Click="AddButton_Click">
+                                <Button.BorderBrush>
+                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                                </Button.BorderBrush>
+                                <Button.Background>
+                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Images/delete.png" />
+                            </Border.Background>
+                            <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10" 
+                        x:Name="DeleteButton" Click="DeleteButton_Click">
+                                <Button.BorderBrush>
+                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                                </Button.BorderBrush>
+                                <Button.Background>
+                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Товары" FontSize="30" FontFamily="Calibri"/>
+                </TabItem.Header>
+
+                <StackPanel Orientation="Horizontal">
+                    <ListBox MaxWidth="800" MinWidth="800" HorizontalAlignment="Left" Margin="10" Background="#FFCBFDAE" BorderBrush="#FF9A5F9C" 
+                BorderThickness="3" FontSize="47" FontFamily="Calibri" x:Name="ProductsListBox"/>
+
+                    <StackPanel Orientation="Vertical">
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Images/add.png"/>
+                            </Border.Background>
+                            <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10" 
+                        x:Name="AddProductButton" Click="AddProductButton_Click"  Padding="0,-2,0,0">
+                                <Button.BorderBrush>
+                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                                </Button.BorderBrush>
+                                <Button.Background>
+                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Images/edit.jpg"/>
+                            </Border.Background>
+                            <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10" 
+                        x:Name="EditProductButton" Click="EditProductButton_Click">
+                                <Button.BorderBrush>
+                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                                </Button.BorderBrush>
+                                <Button.Background>
+                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Images/delete.png"/>
+                            </Border.Background>
+                            <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10" 
+                        x:Name="DeleteProductButton" Click="DeleteProductButton_Click">
+                                <Button.BorderBrush>
+                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
+                                </Button.BorderBrush>
+                                <Button.Background>
+                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
+                                </Button.Background>
+                            </Button>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

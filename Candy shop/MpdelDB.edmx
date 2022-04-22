@@ -1,0 +1,649 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CandyShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Manufacturers">
+          <Key>
+            <PropertyRef Name="ManufacturerID" />
+          </Key>
+          <Property Name="ManufacturerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameOfManufacturer" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManufacturerID_FK" Type="int" Nullable="false" />
+          <Property Name="NameOfProduct" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="PurchasePrice" Type="money" Nullable="false" />
+          <Property Name="ExpirationDate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReceiptsOfProducts">
+          <Key>
+            <PropertyRef Name="ReceiptOfProductsID" />
+          </Key>
+          <Property Name="ReceiptOfProductsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID_FK" Type="int" Nullable="false" />
+          <Property Name="ShiftID_FK" Type="int" Nullable="false" />
+          <Property Name="CountOfProducts" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SalesOfProducts">
+          <Key>
+            <PropertyRef Name="SaleOfProductsID" />
+          </Key>
+          <Property Name="SaleOfProductsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID_FK" Type="int" Nullable="false" />
+          <Property Name="ShiftID_FK" Type="int" Nullable="false" />
+          <Property Name="CountOfProducts" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shifts">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkerID_FK" Type="int" Nullable="false" />
+          <Property Name="ArriveOfMoney" Type="money" Nullable="false" />
+          <Property Name="FlowOfNomey" Type="money" Nullable="false" />
+          <Property Name="MoneyAtStartShift" Type="money" Nullable="false" />
+          <Property Name="ShiftDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID_FK" Type="int" Nullable="false" />
+          <Property Name="CountOfProducts" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="WorkerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkerCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="WorkerPassword" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Post" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WritesOffOfProducts">
+          <Key>
+            <PropertyRef Name="WriteOffOfProducts" />
+          </Key>
+          <Property Name="WriteOffOfProducts" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID_FK" Type="int" Nullable="false" />
+          <Property Name="ShiftID_FK" Type="int" Nullable="false" />
+          <Property Name="CountOfProducts" Type="int" Nullable="false" />
+          <Property Name="Info" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Products__Manufa__38996AB5">
+          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturers">
+              <PropertyRef Name="ManufacturerID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ManufacturerID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReceiptsO__Produ__4316F928">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ReceiptsOfProducts" Type="Self.ReceiptsOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ReceiptsOfProducts">
+              <PropertyRef Name="ProductID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReceiptsO__Shift__440B1D61">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="ReceiptsOfProducts" Type="Self.ReceiptsOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="ReceiptsOfProducts">
+              <PropertyRef Name="ShiftID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesOfPr__Produ__4AB81AF0">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="SalesOfProducts" Type="Self.SalesOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="SalesOfProducts">
+              <PropertyRef Name="ProductID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesOfPr__Shift__4BAC3F29">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="SalesOfProducts" Type="Self.SalesOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="SalesOfProducts">
+              <PropertyRef Name="ShiftID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shifts__WorkerID__403A8C7D">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="WorkerID" />
+            </Principal>
+            <Dependent Role="Shifts">
+              <PropertyRef Name="WorkerID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Warehouse__Produ__3B75D760">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="ProductID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WritesOff__Produ__46E78A0C">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="WritesOffOfProducts" Type="Self.WritesOffOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="WritesOffOfProducts">
+              <PropertyRef Name="ProductID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WritesOff__Shift__47DBAE45">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="WritesOffOfProducts" Type="Self.WritesOffOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="WritesOffOfProducts">
+              <PropertyRef Name="ShiftID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище CandyShopModelContainer">
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReceiptsOfProducts" EntityType="Self.ReceiptsOfProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesOfProducts" EntityType="Self.SalesOfProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shifts" EntityType="Self.Shifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WritesOffOfProducts" EntityType="Self.WritesOffOfProducts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Products__Manufa__38996AB5" Association="Self.FK__Products__Manufa__38996AB5">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReceiptsO__Produ__4316F928" Association="Self.FK__ReceiptsO__Produ__4316F928">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ReceiptsOfProducts" EntitySet="ReceiptsOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReceiptsO__Shift__440B1D61" Association="Self.FK__ReceiptsO__Shift__440B1D61">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="ReceiptsOfProducts" EntitySet="ReceiptsOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesOfPr__Produ__4AB81AF0" Association="Self.FK__SalesOfPr__Produ__4AB81AF0">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="SalesOfProducts" EntitySet="SalesOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesOfPr__Shift__4BAC3F29" Association="Self.FK__SalesOfPr__Shift__4BAC3F29">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="SalesOfProducts" EntitySet="SalesOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shifts__WorkerID__403A8C7D" Association="Self.FK__Shifts__WorkerID__403A8C7D">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="Shifts" EntitySet="Shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Warehouse__Produ__3B75D760" Association="Self.FK__Warehouse__Produ__3B75D760">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WritesOff__Produ__46E78A0C" Association="Self.FK__WritesOff__Produ__46E78A0C">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="WritesOffOfProducts" EntitySet="WritesOffOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WritesOff__Shift__47DBAE45" Association="Self.FK__WritesOff__Shift__47DBAE45">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="WritesOffOfProducts" EntitySet="WritesOffOfProducts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CandyShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Manufacturers">
+          <Key>
+            <PropertyRef Name="ManufacturerID" />
+          </Key>
+          <Property Name="ManufacturerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameOfManufacturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__Manufa__38996AB5" FromRole="Manufacturers" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManufacturerID_FK" Type="Int32" Nullable="false" />
+          <Property Name="NameOfProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ExpirationDate" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Manufacturers" Relationship="Self.FK__Products__Manufa__38996AB5" FromRole="Products" ToRole="Manufacturers" />
+          <NavigationProperty Name="ReceiptsOfProducts" Relationship="Self.FK__ReceiptsO__Produ__4316F928" FromRole="Products" ToRole="ReceiptsOfProducts" />
+          <NavigationProperty Name="SalesOfProducts" Relationship="Self.FK__SalesOfPr__Produ__4AB81AF0" FromRole="Products" ToRole="SalesOfProducts" />
+          <NavigationProperty Name="Warehouses" Relationship="Self.FK__Warehouse__Produ__3B75D760" FromRole="Products" ToRole="Warehouses" />
+          <NavigationProperty Name="WritesOffOfProducts" Relationship="Self.FK__WritesOff__Produ__46E78A0C" FromRole="Products" ToRole="WritesOffOfProducts" />
+        </EntityType>
+        <EntityType Name="ReceiptsOfProducts">
+          <Key>
+            <PropertyRef Name="ReceiptOfProductsID" />
+          </Key>
+          <Property Name="ReceiptOfProductsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID_FK" Type="Int32" Nullable="false" />
+          <Property Name="ShiftID_FK" Type="Int32" Nullable="false" />
+          <Property Name="CountOfProducts" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__ReceiptsO__Produ__4316F928" FromRole="ReceiptsOfProducts" ToRole="Products" />
+          <NavigationProperty Name="Shifts" Relationship="Self.FK__ReceiptsO__Shift__440B1D61" FromRole="ReceiptsOfProducts" ToRole="Shifts" />
+        </EntityType>
+        <EntityType Name="SalesOfProducts">
+          <Key>
+            <PropertyRef Name="SaleOfProductsID" />
+          </Key>
+          <Property Name="SaleOfProductsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID_FK" Type="Int32" Nullable="false" />
+          <Property Name="ShiftID_FK" Type="Int32" Nullable="false" />
+          <Property Name="CountOfProducts" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__SalesOfPr__Produ__4AB81AF0" FromRole="SalesOfProducts" ToRole="Products" />
+          <NavigationProperty Name="Shifts" Relationship="Self.FK__SalesOfPr__Shift__4BAC3F29" FromRole="SalesOfProducts" ToRole="Shifts" />
+        </EntityType>
+        <EntityType Name="Shifts">
+          <Key>
+            <PropertyRef Name="ShiftID" />
+          </Key>
+          <Property Name="ShiftID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkerID_FK" Type="Int32" Nullable="false" />
+          <Property Name="ArriveOfMoney" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FlowOfNomey" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MoneyAtStartShift" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ShiftDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="ReceiptsOfProducts" Relationship="Self.FK__ReceiptsO__Shift__440B1D61" FromRole="Shifts" ToRole="ReceiptsOfProducts" />
+          <NavigationProperty Name="SalesOfProducts" Relationship="Self.FK__SalesOfPr__Shift__4BAC3F29" FromRole="Shifts" ToRole="SalesOfProducts" />
+          <NavigationProperty Name="Workers" Relationship="Self.FK__Shifts__WorkerID__403A8C7D" FromRole="Shifts" ToRole="Workers" />
+          <NavigationProperty Name="WritesOffOfProducts" Relationship="Self.FK__WritesOff__Shift__47DBAE45" FromRole="Shifts" ToRole="WritesOffOfProducts" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="WarehouseID" />
+          </Key>
+          <Property Name="WarehouseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID_FK" Type="Int32" Nullable="false" />
+          <Property Name="CountOfProducts" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Warehouse__Produ__3B75D760" FromRole="Warehouses" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="WorkerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkerCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WorkerPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__WorkerID__403A8C7D" FromRole="Workers" ToRole="Shifts" />
+        </EntityType>
+        <EntityType Name="WritesOffOfProducts">
+          <Key>
+            <PropertyRef Name="WriteOffOfProducts" />
+          </Key>
+          <Property Name="WriteOffOfProducts" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID_FK" Type="Int32" Nullable="false" />
+          <Property Name="ShiftID_FK" Type="Int32" Nullable="false" />
+          <Property Name="CountOfProducts" Type="Int32" Nullable="false" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__WritesOff__Produ__46E78A0C" FromRole="WritesOffOfProducts" ToRole="Products" />
+          <NavigationProperty Name="Shifts" Relationship="Self.FK__WritesOff__Shift__47DBAE45" FromRole="WritesOffOfProducts" ToRole="Shifts" />
+        </EntityType>
+        <Association Name="FK__Products__Manufa__38996AB5">
+          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturers">
+              <PropertyRef Name="ManufacturerID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="ManufacturerID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReceiptsO__Produ__4316F928">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ReceiptsOfProducts" Type="Self.ReceiptsOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ReceiptsOfProducts">
+              <PropertyRef Name="ProductID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesOfPr__Produ__4AB81AF0">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="SalesOfProducts" Type="Self.SalesOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="SalesOfProducts">
+              <PropertyRef Name="ProductID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Warehouse__Produ__3B75D760">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Warehouses">
+              <PropertyRef Name="ProductID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WritesOff__Produ__46E78A0C">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="WritesOffOfProducts" Type="Self.WritesOffOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="WritesOffOfProducts">
+              <PropertyRef Name="ProductID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReceiptsO__Shift__440B1D61">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="ReceiptsOfProducts" Type="Self.ReceiptsOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="ReceiptsOfProducts">
+              <PropertyRef Name="ShiftID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SalesOfPr__Shift__4BAC3F29">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="SalesOfProducts" Type="Self.SalesOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="SalesOfProducts">
+              <PropertyRef Name="ShiftID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Shifts__WorkerID__403A8C7D">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="WorkerID" />
+            </Principal>
+            <Dependent Role="Shifts">
+              <PropertyRef Name="WorkerID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WritesOff__Shift__47DBAE45">
+          <End Role="Shifts" Type="Self.Shifts" Multiplicity="1" />
+          <End Role="WritesOffOfProducts" Type="Self.WritesOffOfProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shifts">
+              <PropertyRef Name="ShiftID" />
+            </Principal>
+            <Dependent Role="WritesOffOfProducts">
+              <PropertyRef Name="ShiftID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CandyShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="ReceiptsOfProducts" EntityType="Self.ReceiptsOfProducts" />
+          <EntitySet Name="SalesOfProducts" EntityType="Self.SalesOfProducts" />
+          <EntitySet Name="Shifts" EntityType="Self.Shifts" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouses" />
+          <EntitySet Name="Workers" EntityType="Self.Workers" />
+          <EntitySet Name="WritesOffOfProducts" EntityType="Self.WritesOffOfProducts" />
+          <AssociationSet Name="FK__Products__Manufa__38996AB5" Association="Self.FK__Products__Manufa__38996AB5">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReceiptsO__Produ__4316F928" Association="Self.FK__ReceiptsO__Produ__4316F928">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ReceiptsOfProducts" EntitySet="ReceiptsOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesOfPr__Produ__4AB81AF0" Association="Self.FK__SalesOfPr__Produ__4AB81AF0">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="SalesOfProducts" EntitySet="SalesOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Warehouse__Produ__3B75D760" Association="Self.FK__Warehouse__Produ__3B75D760">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Warehouses" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WritesOff__Produ__46E78A0C" Association="Self.FK__WritesOff__Produ__46E78A0C">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="WritesOffOfProducts" EntitySet="WritesOffOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReceiptsO__Shift__440B1D61" Association="Self.FK__ReceiptsO__Shift__440B1D61">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="ReceiptsOfProducts" EntitySet="ReceiptsOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SalesOfPr__Shift__4BAC3F29" Association="Self.FK__SalesOfPr__Shift__4BAC3F29">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="SalesOfProducts" EntitySet="SalesOfProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Shifts__WorkerID__403A8C7D" Association="Self.FK__Shifts__WorkerID__403A8C7D">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="Shifts" EntitySet="Shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WritesOff__Shift__47DBAE45" Association="Self.FK__WritesOff__Shift__47DBAE45">
+            <End Role="Shifts" EntitySet="Shifts" />
+            <End Role="WritesOffOfProducts" EntitySet="WritesOffOfProducts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CandyShopModelContainer" CdmEntityContainer="CandyShopEntities">
+          <EntitySetMapping Name="Manufacturers">
+            <EntityTypeMapping TypeName="CandyShopModel.Manufacturers">
+              <MappingFragment StoreEntitySet="Manufacturers">
+                <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+                <ScalarProperty Name="NameOfManufacturer" ColumnName="NameOfManufacturer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="CandyShopModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ManufacturerID_FK" ColumnName="ManufacturerID_FK" />
+                <ScalarProperty Name="NameOfProduct" ColumnName="NameOfProduct" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiptsOfProducts">
+            <EntityTypeMapping TypeName="CandyShopModel.ReceiptsOfProducts">
+              <MappingFragment StoreEntitySet="ReceiptsOfProducts">
+                <ScalarProperty Name="ReceiptOfProductsID" ColumnName="ReceiptOfProductsID" />
+                <ScalarProperty Name="ProductID_FK" ColumnName="ProductID_FK" />
+                <ScalarProperty Name="ShiftID_FK" ColumnName="ShiftID_FK" />
+                <ScalarProperty Name="CountOfProducts" ColumnName="CountOfProducts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesOfProducts">
+            <EntityTypeMapping TypeName="CandyShopModel.SalesOfProducts">
+              <MappingFragment StoreEntitySet="SalesOfProducts">
+                <ScalarProperty Name="SaleOfProductsID" ColumnName="SaleOfProductsID" />
+                <ScalarProperty Name="ProductID_FK" ColumnName="ProductID_FK" />
+                <ScalarProperty Name="ShiftID_FK" ColumnName="ShiftID_FK" />
+                <ScalarProperty Name="CountOfProducts" ColumnName="CountOfProducts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shifts">
+            <EntityTypeMapping TypeName="CandyShopModel.Shifts">
+              <MappingFragment StoreEntitySet="Shifts">
+                <ScalarProperty Name="ShiftID" ColumnName="ShiftID" />
+                <ScalarProperty Name="WorkerID_FK" ColumnName="WorkerID_FK" />
+                <ScalarProperty Name="ArriveOfMoney" ColumnName="ArriveOfMoney" />
+                <ScalarProperty Name="FlowOfNomey" ColumnName="FlowOfNomey" />
+                <ScalarProperty Name="MoneyAtStartShift" ColumnName="MoneyAtStartShift" />
+                <ScalarProperty Name="ShiftDate" ColumnName="ShiftDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CandyShopModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="CandyShopModel.Warehouses">
+              <MappingFragment StoreEntitySet="Warehouses">
+                <ScalarProperty Name="WarehouseID" ColumnName="WarehouseID" />
+                <ScalarProperty Name="ProductID_FK" ColumnName="ProductID_FK" />
+                <ScalarProperty Name="CountOfProducts" ColumnName="CountOfProducts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers">
+            <EntityTypeMapping TypeName="CandyShopModel.Workers">
+              <MappingFragment StoreEntitySet="Workers">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="WorkerCode" ColumnName="WorkerCode" />
+                <ScalarProperty Name="WorkerPassword" ColumnName="WorkerPassword" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WritesOffOfProducts">
+            <EntityTypeMapping TypeName="CandyShopModel.WritesOffOfProducts">
+              <MappingFragment StoreEntitySet="WritesOffOfProducts">
+                <ScalarProperty Name="WriteOffOfProducts" ColumnName="WriteOffOfProducts" />
+                <ScalarProperty Name="ProductID_FK" ColumnName="ProductID_FK" />
+                <ScalarProperty Name="ShiftID_FK" ColumnName="ShiftID_FK" />
+                <ScalarProperty Name="CountOfProducts" ColumnName="CountOfProducts" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

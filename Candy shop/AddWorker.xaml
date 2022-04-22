@@ -36,7 +36,7 @@
         <!-- Верхняя часть -->
         <Border CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
                 BorderThickness="3" Background="#FFCBFDAE" Margin="0,5,0,0">
-            <Label Content="Добавление сотрудника"  FontSize="47" FontFamily="Calibri" Padding="10,0,10,3"/>
+            <Label Content="Добавление сотрудника" FontSize="47" FontFamily="Calibri" Padding="10,0,10,3"/>
         </Border>
 
         <!-- Средняя часть (2 полоска) -->
@@ -54,14 +54,14 @@
             <Button HorizontalAlignment="Left" MinHeight="35" MinWidth="35" VerticalAlignment="Bottom" Margin="5"
                     Cursor="Hand" BorderThickness="2" x:Name="editPhotoButton" Click="EditPhotoButton_Click">
                 <Button.Background>
-                    <ImageBrush ImageSource="/EditPhoto.jpg"/>
+                    <ImageBrush ImageSource="/Images/EditPhoto.jpg"/>
                 </Button.Background>
 
             </Button>
 
             <Border x:Name="photoBorder" HorizontalAlignment="Right" BorderBrush="#FF06A087" BorderThickness="3" Margin="5" MinWidth="230">
                 <Border.Background>
-                    <ImageBrush x:Name="image" ImageSource="/Photo.jpg"/>
+                    <ImageBrush x:Name="image" ImageSource="/Images/Photo.jpg" />
                 </Border.Background>
 
             </Border>
