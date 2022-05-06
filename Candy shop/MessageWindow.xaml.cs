@@ -11,7 +11,7 @@ namespace Candy_shop
         {
             InitializeComponent();
 
-            messageTextBlock.Text = ValidateClass.message;
+            messageTextBlock.Text = UsefulFunctions.message;
         }
 
         private void NextButton_Click(object sender, RoutedEventArgs e)

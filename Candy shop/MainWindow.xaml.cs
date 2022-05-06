@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Media;
 using static Candy_shop.ValidateClass;
+using static Candy_shop.UsefulFunctions;
+using System;
 
 namespace Candy_shop
 {
@@ -22,6 +24,25 @@ namespace Candy_shop
         public MainWindow()
         {
             InitializeComponent();
+
+            //если мы запускаем приложение впервые нужно создать админа
+            if (_context.Workers.FirstOrDefault() == null)
+            {
+                _context.Workers.Add(new Workers
+                {
+                    WorkerCode = "А-001",
+                    WorkerPassword = Hash("1234"),
+                    LastName = "Админ",
+                    FirstName = "Админ",
+                    MiddleName = "Админ",
+                    Post = "Администратор",
+                    Phone = "+79000000000",
+                    Birthday = Convert.ToDateTime("01.01.2000")
+                });
+
+                // Сохранить изменения в базе данных
+                _context.SaveChanges();
+            }
         }
 
         private void AuthButton_Click(object sender, RoutedEventArgs e)
@@ -34,35 +55,37 @@ namespace Candy_shop
                 {
                     string code = code1TextBox.Text + "-" + code2TextBox.Text;
 
-                    //таблица Workers
-                    var workers = _context.Workers;
-
                     bool codeExist = false;
 
                     //находим нужный код
-                    if (workers.FirstOrDefault() != null)
+                    foreach (Workers item in _context.Workers.ToList())
                     {
-                        foreach (var item in workers.FirstOrDefault().WorkerCode.ToList())
+                        if (item.WorkerCode.ToString() == code)
                         {
-                            if (item.ToString() == code)
-                            {
-                                codeExist = true;
+                            codeExist = true;
 
-                                //проверяем введенный пароль
-                                if (workers.Where(o => o.WorkerCode.ToString() == code).FirstOrDefault().WorkerPassword.ToString() == passwordTextBox.Text)
+                            //проверяем введенный пароль (а точнее хэш)
+                            if (item.WorkerPassword.ToString() == Hash(passwordTextBox.Text))
+                            {
+                                if (item.Post == "Администратор")
                                 {
-                                    //TODO: надо сделать хэширование пароля, проверку хэшированного пароля, и сделать одного админа дэфолтного
                                     MenuDirector menuDirector = new MenuDirector();
                                     menuDirector.Show();
                                     Close();
                                 }
                                 else
                                 {
-                                    MsgView("Пароль неправильный");
+                                    MenuSaler menuSaler = new MenuSaler();
+                                    menuSaler.Show();
+                                    Close();
                                 }
-
-                                break;
                             }
+                            else
+                            {
+                                MsgView("Пароль неправильный");
+                            }
+
+                            break;
                         }
                     }
 

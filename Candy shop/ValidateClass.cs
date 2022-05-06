@@ -4,9 +4,6 @@ namespace Candy_shop
 {
     internal class ValidateClass
     {
-        //string
-        static public string message = string.Empty;
-
         //функция проверки на маленькие буквы всех букв, кроме первой
         static internal bool CheckingForLetters(string _str)
         {
@@ -86,15 +83,6 @@ namespace Candy_shop
         static internal bool FirstLetterIsLarge(string _str)
         {
             return Regex.IsMatch(_str[0].ToString(), @"[А-Я]");
-        }
-
-        //функция для msg
-        static internal void MsgView(string _str)
-        {
-            message = _str;
-
-            MessageWindow messageWindow = new MessageWindow();
-            messageWindow.ShowDialog();
         }
     }
 }

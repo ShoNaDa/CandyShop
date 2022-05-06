@@ -109,6 +109,7 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>MpdelDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="UsefulFunctions.cs" />
     <Compile Include="ValidateClass.cs" />
     <Compile Include="Warehouses.cs">
       <DependentUpon>MpdelDB.tt</DependentUpon>
@@ -211,6 +212,7 @@
     <Resource Include="Images\edit.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\background.jpeg" />
     <Content Include="MpdelDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MpdelDB.Context.cs</LastGenOutput>

@@ -3,6 +3,7 @@ using System;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using static Candy_shop.ValidateClass;
+using static Candy_shop.UsefulFunctions;
 
 namespace Candy_shop
 {
