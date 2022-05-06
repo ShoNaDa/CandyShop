@@ -58,7 +58,23 @@ namespace Candy_shop
 
         private void SaleProductButton_Click(object sender, RoutedEventArgs e)
         {
+            //проверка на заполнение полей
+            if (StringNotEmpty(ProductsForSaleComboBox.Text) && StringNotEmpty(ProductCountForSaleTextBox.Text))
+            {
+                //проверка на цифры
+                if (CheckingForNumbers(ProductCountForSaleTextBox.Text))
+                {
 
+                }
+                else
+                {
+                    MsgView("Поле 'Количество' должно состоять из цифр");
+                }
+            }
+            else
+            {
+                MsgView("Все поля должны быть заполнены");
+            }
         }
     }
 }

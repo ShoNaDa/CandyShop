@@ -10,18 +10,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            <LinearGradientBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                    <RotateTransform Angle="45" CenterY="0.5" CenterX="0.5"/>
-                </TransformGroup>
-            </LinearGradientBrush.RelativeTransform>
-            <GradientStop Color="#FFEE6969"/>
-            <GradientStop Color="#FF8CDA84" Offset="1"/>
-            <GradientStop Color="#FFE2EA91" Offset="0.523"/>
-        </LinearGradientBrush>
+        <ImageBrush ImageSource="Images\background.jpeg"/>
     </Window.Background>
 
     <Grid>
@@ -46,14 +35,7 @@
                                 <ImageBrush ImageSource="/Images/add.png" />
                             </Border.Background>
                             <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10"
-                        x:Name="AddButton" Click="AddButton_Click">
-                                <Button.BorderBrush>
-                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                                </Button.BorderBrush>
-                                <Button.Background>
-                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                                </Button.Background>
-                            </Button>
+                        x:Name="AddButton" Click="AddButton_Click"/>
                         </Border>
 
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
@@ -62,14 +44,7 @@
                                 <ImageBrush ImageSource="/Images/delete.png" />
                             </Border.Background>
                             <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10" 
-                        x:Name="DeleteButton" Click="DeleteButton_Click">
-                                <Button.BorderBrush>
-                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                                </Button.BorderBrush>
-                                <Button.Background>
-                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                                </Button.Background>
-                            </Button>
+                        x:Name="DeleteButton" Click="DeleteButton_Click"/>
                         </Border>
                     </StackPanel>
                 </StackPanel>
@@ -91,14 +66,7 @@
                                 <ImageBrush ImageSource="/Images/add.png"/>
                             </Border.Background>
                             <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10" 
-                        x:Name="AddProductButton" Click="AddProductButton_Click"  Padding="0,-2,0,0">
-                                <Button.BorderBrush>
-                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                                </Button.BorderBrush>
-                                <Button.Background>
-                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                                </Button.Background>
-                            </Button>
+                        x:Name="AddProductButton" Click="AddProductButton_Click"  Padding="0,-2,0,0"/>
                         </Border>
 
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
@@ -107,14 +75,7 @@
                                 <ImageBrush ImageSource="/Images/edit.jpg"/>
                             </Border.Background>
                             <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10" 
-                        x:Name="EditProductButton" Click="EditProductButton_Click">
-                                <Button.BorderBrush>
-                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                                </Button.BorderBrush>
-                                <Button.Background>
-                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                                </Button.Background>
-                            </Button>
+                        x:Name="EditProductButton" Click="EditProductButton_Click"/>
                         </Border>
 
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
@@ -123,14 +84,7 @@
                                 <ImageBrush ImageSource="/Images/delete.png"/>
                             </Border.Background>
                             <Button FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10" 
-                        x:Name="DeleteProductButton" Click="DeleteProductButton_Click">
-                                <Button.BorderBrush>
-                                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                                </Button.BorderBrush>
-                                <Button.Background>
-                                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                                </Button.Background>
-                            </Button>
+                        x:Name="DeleteProductButton" Click="DeleteProductButton_Click"/>
                         </Border>
                     </StackPanel>
                 </StackPanel>

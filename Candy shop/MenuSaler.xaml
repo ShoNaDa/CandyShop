@@ -10,18 +10,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            <LinearGradientBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                    <RotateTransform Angle="45" CenterY="0.5" CenterX="0.5"/>
-                </TransformGroup>
-            </LinearGradientBrush.RelativeTransform>
-            <GradientStop Color="#FFEE6969"/>
-            <GradientStop Color="#FF8CDA84" Offset="1"/>
-            <GradientStop Color="#FFE2EA91" Offset="0.523"/>
-        </LinearGradientBrush>
+        <ImageBrush ImageSource="Images\background.jpeg"/>
     </Window.Background>
 
     <Grid>
@@ -82,11 +71,7 @@
                             <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
                             <TextBox x:Name="ProductCountForWithdrawTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="759" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <TextBox.Background>
-                                    <SolidColorBrush Color="White" Opacity="0"/>
-                                </TextBox.Background>
-                            </TextBox>
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="759" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </StackPanel>
 
                         <!-- Дополнительная информация о списании -->
@@ -113,11 +98,7 @@
                             <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
                             <TextBox x:Name="MoreInfoTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="739" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <TextBox.Background>
-                                    <SolidColorBrush Color="White" Opacity="0"/>
-                                </TextBox.Background>
-                            </TextBox>
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="739" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
 
@@ -125,14 +106,7 @@
                     <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170" Grid.Row="3">
                         <Button Content="Сохранить" FontSize="40" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
-                        x:Name="WithdrawProductButton"  Click="WithdrawProductButton_Click"  Padding="0,-2,0,0">
-                            <Button.BorderBrush>
-                                <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                            </Button.BorderBrush>
-                            <Button.Background>
-                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                            </Button.Background>
-                        </Button>
+                        x:Name="WithdrawProductButton"  Click="WithdrawProductButton_Click"  Padding="0,-2,0,0"/>
                     </Border>
                 </Grid>
             </TabItem>
@@ -188,11 +162,7 @@
                             <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
                             <TextBox x:Name="ProductCountTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="759" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <TextBox.Background>
-                                    <SolidColorBrush Color="White" Opacity="0"/>
-                                </TextBox.Background>
-                            </TextBox>
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="759" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
 
@@ -200,14 +170,7 @@
                     <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170" Grid.Row="3">
                         <Button Content="Сохранить" FontSize="40" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
-                        x:Name="AddProductButton"  Click="AddProductButton_Click"  Padding="0,-2,0,0">
-                            <Button.BorderBrush>
-                                <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                            </Button.BorderBrush>
-                            <Button.Background>
-                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                            </Button.Background>
-                        </Button>
+                        x:Name="AddProductButton"  Click="AddProductButton_Click"  Padding="0,-2,0,0"/>
                     </Border>
                 </Grid>
             </TabItem>
@@ -263,11 +226,7 @@
                             <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
                             <TextBox x:Name="ProductCountForSaleTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="759" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <TextBox.Background>
-                                    <SolidColorBrush Color="White" Opacity="0"/>
-                                </TextBox.Background>
-                            </TextBox>
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="759" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
 
@@ -275,14 +234,7 @@
                     <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170" Grid.Row="3">
                         <Button Content="Сохранить" FontSize="40" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
-                        x:Name="SaleProductButton"  Click="SaleProductButton_Click"  Padding="0,-2,0,0">
-                            <Button.BorderBrush>
-                                <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                            </Button.BorderBrush>
-                            <Button.Background>
-                                <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                            </Button.Background>
-                        </Button>
+                        x:Name="SaleProductButton"  Click="SaleProductButton_Click"  Padding="0,-2,0,0"/>
                     </Border>
                 </Grid>
             </TabItem>

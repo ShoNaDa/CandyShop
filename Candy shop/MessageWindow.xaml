@@ -10,20 +10,9 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            <LinearGradientBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                    <RotateTransform Angle="45" CenterY="0.5" CenterX="0.5"/>
-                </TransformGroup>
-            </LinearGradientBrush.RelativeTransform>
-            <GradientStop Color="#FFEE6969"/>
-            <GradientStop Color="#FF8CDA84" Offset="1"/>
-            <GradientStop Color="#FFE2EA91" Offset="0.523"/>
-        </LinearGradientBrush>
+        <ImageBrush ImageSource="Images\background.jpeg"/>
     </Window.Background>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -43,19 +32,12 @@
             <TextBlock Text="Some message"  FontSize="25" FontFamily="Calibri" Padding="10,0,10,3" VerticalAlignment="Center"
                        HorizontalAlignment="Center" x:Name="messageTextBlock" TextWrapping="Wrap" TextAlignment="Center"/>
         </Border>
-        
+
         <!-- Нижняя часть -->
         <Border Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
             <Button Content="Продолжить" FontSize="35" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
-                        x:Name="NextButton"  Click="NextButton_Click"  Padding="0,-2,0,0">
-                <Button.BorderBrush>
-                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                </Button.BorderBrush>
-                <Button.Background>
-                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                </Button.Background>
-            </Button>
+                        x:Name="NextButton"  Click="NextButton_Click"  Padding="0,-2,0,0"/>
         </Border>
     </Grid>
 </Window>

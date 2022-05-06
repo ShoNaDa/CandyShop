@@ -14,6 +14,9 @@ namespace Candy_shop
     {
         //если что есть один админ сразу pass = 1234, code = А-001
 
+        //bool
+        static bool isAdmin;
+
         //int
         private int countOfHoversOnCode = 0;
         private int countOfHoversOnPassword = 0;
@@ -69,12 +72,16 @@ namespace Candy_shop
                             {
                                 if (item.Post == "Администратор")
                                 {
+                                    isAdmin = true;
+
                                     MenuDirector menuDirector = new MenuDirector();
                                     menuDirector.Show();
                                     Close();
                                 }
                                 else
                                 {
+                                    isAdmin = false;
+
                                     MenuSaler menuSaler = new MenuSaler();
                                     menuSaler.Show();
                                     Close();

@@ -38,7 +38,9 @@ namespace Candy_shop
 
         private void CancalButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MenuDirector menuDirector = new MenuDirector();
+            menuDirector.Show();
+            Close();
         }
 
         private void AddWorkerButton_Click(object sender, RoutedEventArgs e)

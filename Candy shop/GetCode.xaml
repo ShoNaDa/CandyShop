@@ -10,18 +10,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            <LinearGradientBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                    <RotateTransform Angle="45" CenterY="0.5" CenterX="0.5"/>
-                </TransformGroup>
-            </LinearGradientBrush.RelativeTransform>
-            <GradientStop Color="#FFEE6969"/>
-            <GradientStop Color="#FF8CDA84" Offset="1"/>
-            <GradientStop Color="#FFE2EA91" Offset="0.523"/>
-        </LinearGradientBrush>
+        <ImageBrush ImageSource="Images\background.jpeg"/>
     </Window.Background>
 
     <Grid>
@@ -57,14 +46,7 @@
         <Border Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
             <Button Content="Продолжить" FontSize="50" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
-                        x:Name="NextButton"  Click="NextButton_Click">
-                <Button.BorderBrush>
-                    <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                </Button.BorderBrush>
-                <Button.Background>
-                    <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                </Button.Background>
-            </Button>
+                        x:Name="NextButton"  Click="NextButton_Click"/>
         </Border>
     </Grid>
 </Window>

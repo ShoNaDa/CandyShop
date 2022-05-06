@@ -10,20 +10,9 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-            <LinearGradientBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                    <SkewTransform CenterY="0.5" CenterX="0.5"/>
-                    <RotateTransform Angle="45" CenterY="0.5" CenterX="0.5"/>
-                </TransformGroup>
-            </LinearGradientBrush.RelativeTransform>
-            <GradientStop Color="#FFEE6969"/>
-            <GradientStop Color="#FF8CDA84" Offset="1"/>
-            <GradientStop Color="#FFE2EA91" Offset="0.523"/>
-        </LinearGradientBrush>
+        <ImageBrush ImageSource="Images\background.jpeg"/>
     </Window.Background>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -63,11 +52,7 @@
                 <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
                 <TextBox x:Name="ProductNameTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="780" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBox.Background>
-                        <SolidColorBrush Color="White" Opacity="0"/>
-                    </TextBox.Background>
-                </TextBox>
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="780" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Цена товара -->
@@ -81,11 +66,7 @@
                 <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
                 <TextBox x:Name="ProductPriceTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="836" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBox.Background>
-                        <SolidColorBrush Color="White" Opacity="0"/>
-                    </TextBox.Background>
-                </TextBox>
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="836" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Срок годности товара -->
@@ -99,11 +80,7 @@
                 <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
                 <TextBox x:Name="ProductExpirationTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="718" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBox.Background>
-                        <SolidColorBrush Color="White" Opacity="0"/>
-                    </TextBox.Background>
-                </TextBox>
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="718" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Производитель -->
@@ -135,11 +112,7 @@
                 <Label Content=":" FontSize="30" FontFamily="Calibri"/>
 
                 <TextBox x:Name="PurchasePriceTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="679" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBox.Background>
-                        <SolidColorBrush Color="White" Opacity="0"/>
-                    </TextBox.Background>
-                </TextBox>
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="679" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Вопросик -->
@@ -174,28 +147,14 @@
             <Border Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF98B18A" MinWidth="170">
                 <Button Content="Отмена" FontSize="30" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
-                        x:Name="CancalButton"  Click="CancalButton_Click"  Padding="0,-2,0,0">
-                    <Button.BorderBrush>
-                        <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                    </Button.BorderBrush>
-                    <Button.Background>
-                        <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                    </Button.Background>
-                </Button>
+                        x:Name="CancalButton"  Click="CancalButton_Click"  Padding="0,-2,0,0"/>
             </Border>
 
             <!-- Правая часть -->
             <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
                 <Button Content="Добавить" FontSize="30" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
-                        x:Name="AddProductButton"  Click="AddProductButton_Click"  Padding="0,-2,0,0">
-                    <Button.BorderBrush>
-                        <SolidColorBrush Color="#FF707070" Opacity="0"/>
-                    </Button.BorderBrush>
-                    <Button.Background>
-                        <SolidColorBrush Color="#FFDDDDDD" Opacity="0"/>
-                    </Button.Background>
-                </Button>
+                        x:Name="AddProductButton"  Click="AddProductButton_Click"  Padding="0,-2,0,0"/>
             </Border>
         </Grid>
     </Grid>
