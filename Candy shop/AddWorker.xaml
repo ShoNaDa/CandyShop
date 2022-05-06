@@ -113,6 +113,7 @@
                             <SolidColorBrush Color="#FFE61414" Opacity="0"/>
                         </Label.Foreground>
                     </Label>
+                    
                     <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
                         <Label Content="Телефон" FontSize="30" FontFamily="Calibri"/>
                     </Border>
@@ -164,9 +165,8 @@
 
                 <ComboBox x:Name="postComboBox" FontSize="27" BorderThickness="2" FontFamily="Calibri" Margin="5,0,0,0" MaxWidth="766"
                          Padding="5" MinWidth="766" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand">
-                    <ComboBoxItem Background="#FFBCE38B" Content="Должность 1"/>
-                    <ComboBoxItem Background="#FFBCE38B" Content="Аолжность 2"/>
-                    <ComboBoxItem Background="#FFBCE38B" Content="Волжность 3"/>
+                    <ComboBoxItem Background="#FFBCE38B" Content="Администратор"/>
+                    <ComboBoxItem Background="#FFBCE38B" Content="Работник"/>
                 </ComboBox>
             </StackPanel>
 
@@ -180,7 +180,7 @@
 
                 <Label Content=":" FontSize="27" FontFamily="Calibri"/>
 
-                <TextBox x:Name="passwordTextBox" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="808"
+                <PasswordBox x:Name="passwordTextBox" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="808"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="808" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 
@@ -194,7 +194,7 @@
 
                 <Label Content=":" FontSize="27" FontFamily="Calibri"/>
 
-                <TextBox x:Name="repeatPasswordTextBox" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="684"
+                <PasswordBox x:Name="repeatPasswordTextBox" FontSize="27" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="684"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="684" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 

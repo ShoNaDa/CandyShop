@@ -14,8 +14,8 @@ namespace Candy_shop
     {
         //если что есть один админ сразу pass = 1234, code = А-001
 
-        //bool
-        static bool isAdmin;
+        //string
+        public static string codeAuthUser;
 
         //int
         private int countOfHoversOnCode = 0;
@@ -51,12 +51,12 @@ namespace Candy_shop
         private void AuthButton_Click(object sender, RoutedEventArgs e)
         {
             //проверка на заполнение полей
-            if (StringNotEmpty(code1TextBox.Text) && StringNotEmpty(code2TextBox.Text) && StringNotEmpty(passwordTextBox.Text))
+            if (StringNotEmpty(code1TextBox.Text) && StringNotEmpty(code2TextBox.Text) && StringNotEmpty(passwordTextBox.Password))
             {
                 //проверка длины
                 if (code1TextBox.Text.Length == 1 && code2TextBox.Text.Length == 3)
                 {
-                    string code = code1TextBox.Text + "-" + code2TextBox.Text;
+                    string code = $"{code1TextBox.Text}-{code2TextBox.Text}";
 
                     bool codeExist = false;
 
@@ -68,20 +68,18 @@ namespace Candy_shop
                             codeExist = true;
 
                             //проверяем введенный пароль (а точнее хэш)
-                            if (item.WorkerPassword.ToString() == Hash(passwordTextBox.Text))
+                            if (item.WorkerPassword.ToString() == Hash(passwordTextBox.Password))
                             {
+                                codeAuthUser = code;
+
                                 if (item.Post == "Администратор")
                                 {
-                                    isAdmin = true;
-
                                     MenuDirector menuDirector = new MenuDirector();
                                     menuDirector.Show();
                                     Close();
                                 }
                                 else
                                 {
-                                    isAdmin = false;
-
                                     MenuSaler menuSaler = new MenuSaler();
                                     menuSaler.Show();
                                     Close();
@@ -130,7 +128,7 @@ namespace Candy_shop
             if (countOfHoversOnPassword == 0)
             {
                 passwordTextBox.Foreground = Brushes.Black;
-                passwordTextBox.Text = string.Empty;
+                passwordTextBox.Password = string.Empty;
                 countOfHoversOnPassword++;
             }
         }

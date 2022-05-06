@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Candy_shop
 {
@@ -7,9 +10,27 @@ namespace Candy_shop
     /// </summary>
     public partial class MenuDirector : Window
     {
+        //db
+        readonly CandyShopEntities _context = new CandyShopEntities();
+
         public MenuDirector()
         {
             InitializeComponent();
+
+            //строка с текущим пользователем из БД
+            var userInfo = _context.Workers.Where(o => o.WorkerCode == MainWindow.codeAuthUser).FirstOrDefault();
+
+            lNameLabel.Content = userInfo.LastName;
+            fNameLabel.Content = userInfo.FirstName;
+            mNameLabel.Content = userInfo.MiddleName;
+            phoneLabel.Content = userInfo.Phone;
+            postLabel.Content = userInfo.Post;
+            birthdayLabel.Content = userInfo.Birthday.ToShortDateString();
+
+            if (userInfo.Photo != null)
+            {
+                image.ImageSource = new BitmapImage(new Uri(userInfo.Photo));
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

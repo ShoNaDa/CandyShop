@@ -83,7 +83,7 @@
             </StackPanel>
 
             <!-- Правая часть -->
-            <TextBox x:Name="passwordTextBox" Grid.Column="1" Text="Password" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" 
+            <PasswordBox x:Name="passwordTextBox" Grid.Column="1" Password="Password" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" 
                      MouseEnter="PasswordTextBox_MouseEnter"  Padding="5" BorderBrush="#FF4242C1" MinWidth="550" 
                      HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray"/>
         </Grid>

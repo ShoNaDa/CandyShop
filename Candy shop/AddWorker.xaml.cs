@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using static Candy_shop.ValidateClass;
 using static Candy_shop.UsefulFunctions;
+using System.Linq;
 
 namespace Candy_shop
 {
@@ -13,7 +14,11 @@ namespace Candy_shop
     public partial class AddWorker : Window
     {
         //string
-        static public string uniqueCode = string.Empty;
+        public static string uniqueCode = string.Empty;
+        public static string imageSource = "/Images/Photo.jpg";
+
+        //db
+        readonly CandyShopEntities _context = new CandyShopEntities();
 
         public AddWorker()
         {
@@ -31,9 +36,10 @@ namespace Candy_shop
             //если диалоговое окно открыто, то присваиваем выбранную фотографию в рамку
             if (openFileDialog.ShowDialog() == true)
             {
+                imageSource = openFileDialog.FileName;
+
                 image.ImageSource = new BitmapImage(new Uri(openFileDialog.FileName));
             }
-            
         }
 
         private void CancalButton_Click(object sender, RoutedEventArgs e)
@@ -47,7 +53,7 @@ namespace Candy_shop
         {
             //проверка на заполнение полей
             if (StringNotEmpty(lNameTextBox.Text) && StringNotEmpty(fNameTextBox.Text) && StringNotEmpty(mNameTextBox.Text)
-                && StringNotEmpty(postComboBox.Text) && StringNotEmpty(passwordTextBox.Text) && StringNotEmpty(repeatPasswordTextBox.Text)
+                && StringNotEmpty(postComboBox.Text) && StringNotEmpty(passwordTextBox.Password) && StringNotEmpty(repeatPasswordTextBox.Password)
                 && StringNotEmpty(dayTextBox.Text) && StringNotEmpty(monthTextBox.Text) && StringNotEmpty(yearTextBox.Text))
             {
                 //проверка на заглавную букву
@@ -87,7 +93,7 @@ namespace Candy_shop
                         if (phoneIsNorm)
                         {
                             //пароли должны совпадать
-                            if (repeatPasswordTextBox.Text == passwordTextBox.Text)
+                            if (repeatPasswordTextBox.Password == passwordTextBox.Password)
                             {
                                 //проверка др
                                 if (dayTextBox.Text.Length == 2 && monthTextBox.Text.Length == 2
@@ -96,26 +102,61 @@ namespace Candy_shop
                                     if (CheckingForNumbers(dayTextBox.Text) && CheckingForNumbers(monthTextBox.Text)
                                     && CheckingForNumbers(yearTextBox.Text))
                                     {
-                                        // TODO: надо проверять БД
+                                        //проверка на уникальность
+                                        while (true)
+                                        {
+                                            //создаем уникальный код
+                                            uniqueCode = postComboBox.Text[0].ToString();
 
-                                        //создаем уникальный код
-                                        uniqueCode = postComboBox.Text[0].ToString();
-                                        
-                                        Random rnd = new Random();
-                                        int rand = rnd.Next(0, 1000);
+                                            Random rnd = new Random();
+                                            int rand = rnd.Next(0, 1000);
 
-                                        if (rand.ToString().Length == 1)
-                                        {
-                                            uniqueCode += "—00" + rand.ToString();
+                                            if (rand.ToString().Length == 1)
+                                            {
+                                                uniqueCode += "-00" + rand.ToString();
+                                            }
+                                            else if (rand.ToString().Length == 2)
+                                            {
+                                                uniqueCode += "-0" + rand.ToString();
+                                            }
+                                            else
+                                            {
+                                                uniqueCode += "-" + rand.ToString();
+                                            }
+
+                                            bool codeIsUniq = true;
+
+                                            //сама проверка тут
+                                            foreach (Workers item in _context.Workers.ToList())
+                                            {
+                                                if (item.WorkerCode == uniqueCode)
+                                                {
+                                                    codeIsUniq = false;
+                                                    break;
+                                                }
+                                            }
+
+                                            if (codeIsUniq)
+                                            {
+                                                break;
+                                            }
                                         }
-                                        else if (rand.ToString().Length == 2)
+
+                                        //добавление в БД
+                                        _context.Workers.Add(new Workers
                                         {
-                                            uniqueCode += "—0" + rand.ToString();
-                                        }
-                                        else
-                                        {
-                                            uniqueCode += "—" + rand.ToString();
-                                        }
+                                            WorkerCode = uniqueCode,
+                                            WorkerPassword = Hash(passwordTextBox.Password),
+                                            LastName = lNameTextBox.Text.Trim(),
+                                            FirstName = fNameTextBox.Text.Trim(),
+                                            MiddleName = mNameTextBox.Text.Trim(),
+                                            Post = postComboBox.Text.Trim(),
+                                            Photo = imageSource,
+                                            Phone = $"+7{phone1TextBox.Text}{phone2TextBox.Text}{phone3TextBox.Text}{phone4TextBox.Text}",
+                                            Birthday = Convert.ToDateTime($"{dayTextBox.Text}.{monthTextBox.Text}.{yearTextBox.Text}")
+                                        });
+                                        // Сохранить изменения в базе данных
+                                        _context.SaveChanges();
 
                                         GetCode getCode = new GetCode();
                                         getCode.Show();

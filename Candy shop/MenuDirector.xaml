@@ -89,6 +89,69 @@
                     </StackPanel>
                 </StackPanel>
             </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Профиль" FontSize="30" FontFamily="Calibri"/>
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Верхняя часть -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Фотка -->
+                        <Border x:Name="photoBorder" HorizontalAlignment="Center" BorderBrush="#FF06A087" BorderThickness="3" Margin="5" MinWidth="300">
+                            <Border.Background>
+                                <ImageBrush x:Name="image" ImageSource="/Images/Photo.jpg" />
+                            </Border.Background>
+
+                        </Border>
+
+                        <!-- Правая часть -->
+                        <Grid Grid.Column="1">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                    <Label Content="Фамилия" FontSize="40" FontFamily="Calibri" HorizontalAlignment="Center" x:Name="lNameLabel"/>
+                                </Border>
+
+                                <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                    <Label Content="Имя" FontSize="40" FontFamily="Calibri" HorizontalAlignment="Center" x:Name="fNameLabel"/>
+                                </Border>
+
+                                <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                    <Label Content="Отчество" FontSize="40" FontFamily="Calibri" HorizontalAlignment="Center" x:Name="mNameLabel"/>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Нижняя часть -->
+                    <Grid Grid.Row="1">
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20">
+                            <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                <Label Content="Телефон" FontSize="40" FontFamily="Calibri" HorizontalAlignment="Center" x:Name="phoneLabel"/>
+                            </Border>
+
+                            <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                <Label Content="Должность" FontSize="40" FontFamily="Calibri" HorizontalAlignment="Center" x:Name="postLabel"/>
+                            </Border>
+
+                            <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                <Label Content="День рождения" FontSize="40" FontFamily="Calibri" HorizontalAlignment="Center" x:Name="birthdayLabel"/>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

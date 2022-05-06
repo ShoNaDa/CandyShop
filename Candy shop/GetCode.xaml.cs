@@ -16,7 +16,9 @@ namespace Candy_shop
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MenuDirector menuDirector = new MenuDirector();
+            menuDirector.Show();
+            Close();
         }
     }
 }
