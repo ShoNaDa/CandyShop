@@ -4,14 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="CandyShop" 
+        
         Height="700" 
         Width="1000"
         WindowStartupLocation="CenterScreen">
-
-    <Window.Background>
-        <ImageBrush ImageSource="Images\background.jpeg"/>
-    </Window.Background>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,12 +20,12 @@
         <!-- Верхняя часть -->
         <Border CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
                 BorderThickness="3" Background="#FFCBFDAE" Margin="0,5,0,0">
-            <Label Content="Добавление товара" FontSize="47" FontFamily="Calibri" Padding="10,0,10,3"/>
+            <Label Content="Добавление товара" FontSize="47" Padding="10,0,10,3"/>
         </Border>
 
         <!-- Средняя часть (2 полоска) -->
         <Label Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Foreground="#FFE61414"
-               Content="* - Обязательное поле для заполнения"  FontSize="23" FontFamily="Calibri"/>
+               Content="* - Обязательное поле для заполнения"  FontSize="23" />
         <!-- Средняя часть (3 полоска) -->
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
@@ -43,82 +39,78 @@
 
             <!-- Название товара -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <Label Content="*" FontSize="30" FontFamily="Calibri" Foreground="#FFE61414"/>
+                <Label Content="*" FontSize="30"  Foreground="#FFE61414"/>
 
                 <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
-                    <Label Content="Название" FontSize="30" FontFamily="Calibri"/>
+                    <Label Content="Название" FontSize="30" />
                 </Border>
 
-                <Label Content=":" FontSize="30" FontFamily="Calibri"/>
+                <Label Content=":" FontSize="30" />
 
-                <TextBox x:Name="ProductNameTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
+                <TextBox x:Name="ProductNameTextBox" FontSize="30"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="780" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Цена товара -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1">
-                <Label Content="*" FontSize="30" FontFamily="Calibri" Foreground="#FFE61414"/>
+                <Label Content="*" FontSize="30"  Foreground="#FFE61414"/>
 
                 <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
-                    <Label Content="Цена" FontSize="30" FontFamily="Calibri"/>
+                    <Label Content="Цена" FontSize="30" />
                 </Border>
 
-                <Label Content=":" FontSize="30" FontFamily="Calibri"/>
+                <Label Content=":" FontSize="30" />
 
-                <TextBox x:Name="ProductPriceTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
+                <TextBox x:Name="ProductPriceTextBox" FontSize="30"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="836" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Срок годности товара -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2">
-                <Label Content="*" FontSize="30" FontFamily="Calibri" Foreground="#FFE61414"/>
+                <Label Content="*" FontSize="30"  Foreground="#FFE61414"/>
 
                 <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
-                    <Label Content="Срок годности" FontSize="30" FontFamily="Calibri"/>
+                    <Label Content="Срок годности" FontSize="30" />
                 </Border>
 
-                <Label Content=":" FontSize="30" FontFamily="Calibri"/>
+                <Label Content=":" FontSize="30" />
 
-                <TextBox x:Name="ProductExpirationTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
+                <TextBox x:Name="ProductExpirationTextBox" FontSize="30"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="718" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Производитель -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3">
-                <Label Content="*" FontSize="30" FontFamily="Calibri" Foreground="#FFE61414"/>
+                <Label Content="*" FontSize="30"  Foreground="#FFE61414"/>
 
                 <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
-                    <Label Content="Производитель" FontSize="30" FontFamily="Calibri"/>
+                    <Label Content="Производитель" FontSize="30" />
                 </Border>
 
-                <Label Content=":" FontSize="30" FontFamily="Calibri"/>
+                <Label Content=":" FontSize="30" />
 
-                <ComboBox x:Name="ManufacturerComboBox" FontSize="30" BorderThickness="2" FontFamily="Calibri" Margin="5,0,0,0" MaxWidth="766"
-                         Padding="5" MinWidth="704" HorizontalAlignment="Left" VerticalAlignment="Center" Cursor="Hand">
-                    <ComboBoxItem Background="#FFBCE38B" Content="Собственное производство"/>
-                    <ComboBoxItem Background="#FFBCE38B" Content="Аолжность 2"/>
-                    <ComboBoxItem Background="#FFBCE38B" Content="Волжность 3"/>
-                </ComboBox>
+                <ComboBox x:Name="ManufacturerComboBox" FontSize="30" BorderThickness="2"  Margin="5,0,0,0" MaxWidth="766"
+                         Padding="5" MinWidth="704" HorizontalAlignment="Left" VerticalAlignment="Center" />
             </StackPanel>
 
             <!-- Стоимость затрат на товар -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4">
-                <Label Content="*" FontSize="30" FontFamily="Calibri" Foreground="#FFE61414"/>
+                <Label Content="*" FontSize="30"  Foreground="#FFE61414"/>
 
                 <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
-                    <Label Content="Стоимость затрат" FontSize="30" FontFamily="Calibri"/>
+                    <Label Content="Стоимость затрат" FontSize="30" />
                 </Border>
 
-                <Label Content=":" FontSize="30" FontFamily="Calibri"/>
+                <Label Content=":" FontSize="30" />
 
-                <TextBox x:Name="PurchasePriceTextBox" FontSize="30" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
+                <TextBox x:Name="PurchasePriceTextBox" FontSize="30"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
                          Padding="5" BorderBrush="#FF4242C1" MinWidth="679" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             </StackPanel>
 
             <!-- Вопросик -->
             <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
                 <Border Background="#FF788B8B" CornerRadius="50">
-                    <Label Content="?" FontSize="20" FontFamily="Calibri" Padding="9,1,9,0" Cursor="Help" ToolTipService.ShowDuration="60000">
+                    <Label Content="?" FontSize="20"  Padding="9,1,9,0" Cursor="Help" ToolTipService.ShowDuration="60000">
                         <Label.ToolTip>
                             <ToolTip Background="#FFB1F788" FontSize="15">
                                 <StackPanel>
@@ -132,7 +124,7 @@
                     </Label>
                 </Border>
 
-                <Label Content=" - Наведите, чтобы прочитать правила заполнения полей" FontSize="14" FontFamily="Calibri"/>
+                <Label Content=" - Наведите, чтобы прочитать правила заполнения полей" FontSize="14" />
             </StackPanel>
         </Grid>
 
@@ -146,14 +138,14 @@
             <!-- Левая часть -->
             <Border Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF98B18A" MinWidth="170">
-                <Button Content="Отмена" FontSize="30" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
+                <Button Content="Отмена" FontSize="30"   Margin="10,0,10,0" 
                         x:Name="CancalButton"  Click="CancalButton_Click"  Padding="0,-2,0,0"/>
             </Border>
 
             <!-- Правая часть -->
             <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
-                <Button Content="Добавить" FontSize="30" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
+                <Button Content="Добавить" FontSize="30"   Margin="10,0,10,0" 
                         x:Name="AddProductButton"  Click="AddProductButton_Click"  Padding="0,-2,0,0"/>
             </Border>
         </Grid>

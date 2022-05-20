@@ -4,14 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="CandyShop" 
         Height="450" 
         Width="800"
         WindowStartupLocation="CenterScreen">
-    
-    <Window.Background>
-        <ImageBrush ImageSource="Images\background.jpeg"/>
-    </Window.Background>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,7 +18,7 @@
 
         <!-- Верхняя часть -->
         <Border CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" BorderThickness="3" Background="#FFCBFDAE">
-            <Label Content="Авторизация"  FontSize="55" FontFamily="Calibri" Padding="5,0,5,3"/>
+            <Label Content="Авторизация" FontSize="55" Padding="5,0,5,3"/>
         </Border>
 
         <!-- Средняя часть (2 полоска) -->
@@ -36,7 +31,7 @@
             <!-- Левая часть -->
             <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
                 <Border Background="#FF788B8B" Margin="0,17,10,17" CornerRadius="50">
-                    <Label Content="?" FontSize="20" FontFamily="Calibri" Padding="10,2,10,0" Cursor="Help">
+                    <Label Content="?" FontSize="20" Padding="10,2,10,0" Cursor="Help">
                         <Label.ToolTip>
                             <ToolTip Background="#FFB1F788" FontSize="15">
                                 Уникальный код (логин) сотрудника
@@ -46,20 +41,20 @@
                 </Border>
 
                 <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="0,0,5,0">
-                    <Label Content="Код" FontSize="40" FontFamily="Calibri"/>
+                    <Label Content="Код" FontSize="40"/>
                 </Border>
 
-                <Label Content=":" FontSize="40" FontFamily="Calibri"/>
+                <Label Content=":" FontSize="40"/>
             </StackPanel>
 
             <!-- Правая часть -->
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <TextBox MouseEnter="Code1TextBox_MouseEnter"  Text="X" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0"
+                <TextBox MouseEnter="Code1TextBox_MouseEnter"  Text="X" FontSize="40" BorderThickness="0,0,0,2" Margin="5,0,0,0"
                 Padding="5" BorderBrush="#FF4242C1" MaxLength="1" MinWidth="37" Foreground="Gray" x:Name="code1TextBox"/>
 
-                <Label Content="—" FontSize="40" FontFamily="Calibri"/>
+                <Label Content="—" FontSize="40"/>
 
-                <TextBox Text="XXX" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0"
+                <TextBox Text="XXX" FontSize="40"  BorderThickness="0,0,0,2" Margin="5,0,0,0"
                     Padding="5" BorderBrush="#FF4242C1" MaxLength="3" MinWidth="76" Foreground="Gray" x:Name="code2TextBox"/>
             </StackPanel>
         </Grid>
@@ -76,14 +71,14 @@
                 <Border  BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" 
                     Margin="0,0,5,0">
 
-                    <Label Content="Пароль" FontSize="40" FontFamily="Calibri"/>
+                    <Label Content="Пароль" FontSize="40" />
                 </Border>
 
-                <Label Content=":" FontSize="40" FontFamily="Calibri"/>
+                <Label Content=":" FontSize="40" />
             </StackPanel>
 
             <!-- Правая часть -->
-            <PasswordBox x:Name="passwordTextBox" Grid.Column="1" Password="Password" FontSize="40" FontFamily="Calibri" BorderThickness="0,0,0,2" Margin="5,0,0,0" 
+            <PasswordBox x:Name="passwordTextBox" Grid.Column="1" Password="Password" FontSize="40"  BorderThickness="0,0,0,2" Margin="5,0,0,0" 
                      MouseEnter="PasswordTextBox_MouseEnter"  Padding="5" BorderBrush="#FF4242C1" MinWidth="550" 
                      HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Gray"/>
         </Grid>
@@ -92,7 +87,7 @@
         <Grid Grid.Row="3">
             <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="30" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
-                <Button Content="Войти" FontSize="40" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
+                <Button Content="Войти" FontSize="40"   Margin="10,0,10,0" 
                         x:Name="AuthButton"  Click="AuthButton_Click"/>
             </Border>
         </Grid>

@@ -4,14 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="CandyShop" 
         Height="400" 
         Width="500"
         WindowStartupLocation="CenterScreen">
-
-    <Window.Background>
-        <ImageBrush ImageSource="Images\background.jpeg"/>
-    </Window.Background>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,20 +18,20 @@
         <!-- Верхняя часть -->
         <Border CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
                 BorderThickness="3" Background="#FFFDB9AE" Margin="0,5,0,0">
-            <Label Content="Ошибка!"  FontSize="35" FontFamily="Calibri" Padding="10,0,10,3"/>
+            <Label Content="Ошибка!"  FontSize="35"  Padding="10,0,10,3"/>
         </Border>
 
         <!-- Средняя часть -->
         <Border Grid.Row="1" MinHeight="180" MinWidth="450" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FFF77878" 
                 BorderThickness="3" Background="#FFCBFDAE" MaxHeight="180" MaxWidth="450">
-            <TextBlock Text="Some message"  FontSize="25" FontFamily="Calibri" Padding="10,0,10,3" VerticalAlignment="Center"
+            <TextBlock Text="Some message"  FontSize="25"  Padding="10,0,10,3" VerticalAlignment="Center"
                        HorizontalAlignment="Center" x:Name="messageTextBlock" TextWrapping="Wrap" TextAlignment="Center"/>
         </Border>
 
         <!-- Нижняя часть -->
         <Border Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
-            <Button Content="Продолжить" FontSize="35" FontFamily="Calibri" Cursor="Hand" Margin="10,0,10,0" 
+            <Button Content="Продолжить" FontSize="35"   Margin="10,0,10,0" 
                         x:Name="NextButton"  Click="NextButton_Click"  Padding="0,-2,0,0"/>
         </Border>
     </Grid>

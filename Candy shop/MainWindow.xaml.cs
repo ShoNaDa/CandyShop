@@ -42,7 +42,17 @@ namespace Candy_shop
                     Phone = "+79000000000",
                     Birthday = Convert.ToDateTime("01.01.2000")
                 });
+                // Сохранить изменения в базе данных
+                _context.SaveChanges();
+            }
 
+            //также нужно создать стандартного производителя
+            if (_context.Manufacturers.FirstOrDefault() == null)
+            {
+                _context.Manufacturers.Add(new Manufacturers
+                {
+                    NameOfManufacturer = "Собственное производство"
+                });
                 // Сохранить изменения в базе данных
                 _context.SaveChanges();
             }

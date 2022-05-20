@@ -45,27 +45,27 @@ namespace Candy_shop
             //проверка, чтоб не было ничего кроме цифр и точки
             foreach (char item in _str)
             {
-                if ((Regex.IsMatch(item.ToString(), @"[0-9]") == false) && item != '.')
+                if ((Regex.IsMatch(item.ToString(), @"[0-9]") == false) && item != ',')
                 {
                     isNum = false;
                 }
 
                 //если попалась точка, но уже не первая
-                if (item == '.' && isPoint == true)
+                if (item == ',' && isPoint == true)
                 {
                     isNum = false;
                     break;
                 }
 
                 //если попалась точка
-                if (item == '.' && isPoint == false)
+                if (item == ',' && isPoint == false)
                 {
                     isPoint = true;
                 }
             }
 
             //проверка, чтоб точка не начиналась вначале и не было ее в конце
-            if (_str[0] == '.' || _str[_str.Length - 1] == '.')
+            if (_str[0] == ',' || _str[_str.Length - 1] == ',')
             {
                 isNum = false;
             }

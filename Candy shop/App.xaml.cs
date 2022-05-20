@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Candy_shop
 {
@@ -13,5 +7,14 @@ namespace Candy_shop
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            InitializeComponent();
+
+            FrameworkElement.StyleProperty.OverrideMetadata(typeof(Window), new FrameworkPropertyMetadata
+            {
+                DefaultValue = FindResource(typeof(Window))
+            });
+        }
     }
 }

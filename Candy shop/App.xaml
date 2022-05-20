@@ -4,6 +4,20 @@
              StartupUri="MainWindow.xaml">
 
     <Application.Resources>
+        <!-- Window -->
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Calibri" />
+
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Images\background.jpeg"/>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Title" Value="CandyShop"/>
+        </Style>
+
+        <!-- PasswordBox -->
         <Style TargetType="PasswordBox">
             <Setter Property="Background">
                 <Setter.Value>
@@ -11,7 +25,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
+        <!-- TextBox -->
         <Style TargetType="TextBox">
             <Setter Property="Background">
                 <Setter.Value>
@@ -19,7 +34,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
+        <!-- Button -->
         <Style TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -42,6 +58,8 @@
                     <SolidColorBrush Color="#FF707070" Opacity="0"/>
                 </Setter.Value>
             </Setter>
+
+            <Setter Property="Cursor" Value="Hand"/>
         </Style>
     </Application.Resources>
 </Application>
