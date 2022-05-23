@@ -9,11 +9,19 @@
         WindowStartupLocation="CenterScreen">
 
     <Grid>
+        <!-- Выход -->
+        <Border HorizontalAlignment="Right" VerticalAlignment="Top" CornerRadius="25" Padding="5" Margin="0,10,10,0"
+                    BorderThickness="3" BorderBrush="#FF24686D" Background="#FFE68864" MinWidth="170" Panel.ZIndex="2">
+            <Button Content="Выход" FontSize="30"   Margin="10,0,10,0" 
+                        x:Name="ExitButton"  Click="ExitButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
+        </Border>
+
         <TabControl>
             <TabControl.Background>
                 <SolidColorBrush Color="White" Opacity="0"/>
             </TabControl.Background>
 
+            <!-- Сотрудники -->
             <TabItem>
                 <TabItem.Header>
                     <Label Content="Сотрудники" FontSize="30" />
@@ -25,7 +33,7 @@
 
                     <StackPanel Orientation="Vertical">
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
-                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10,40,10,10">
                             <Border.Background>
                                 <ImageBrush ImageSource="/Images/add.png" />
                             </Border.Background>
@@ -45,6 +53,7 @@
                 </StackPanel>
             </TabItem>
 
+            <!-- Товары -->
             <TabItem>
                 <TabItem.Header>
                     <Label Content="Товары" FontSize="30" />
@@ -66,7 +75,7 @@
 
                     <StackPanel Orientation="Vertical">
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
-                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10,40,10,10">
                             <Border.Background>
                                 <ImageBrush ImageSource="/Images/add.png"/>
                             </Border.Background>
@@ -95,6 +104,7 @@
                 </StackPanel>
             </TabItem>
 
+            <!-- Производители -->
             <TabItem>
                 <TabItem.Header>
                     <Label Content="Производители" FontSize="30" />
@@ -126,7 +136,7 @@
 
                     <StackPanel Orientation="Vertical">
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
-                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10,40,10,10">
                             <Border.Background>
                                 <ImageBrush ImageSource="/Images/add.png" />
                             </Border.Background>
@@ -146,6 +156,7 @@
                 </StackPanel>
             </TabItem>
 
+            <!-- Касса -->
             <TabItem>
                 <TabItem.Header>
                     <Label Content="Касса" FontSize="30" />
@@ -162,13 +173,13 @@
                     <!-- Верхняя часть -->
                     <Border CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
                 BorderThickness="3" Background="#FFCBFDAE" Margin="0,5,0,0">
-                        <Label Content="Денег в кассе" FontSize="70" Padding="10,0,10,3" x:Name="titleLabel"/>
+                        <Label Content="Денег в кассе" FontSize="70" Padding="10,0,10,3"/>
                     </Border>
 
                     <!-- Средняя часть №1 -->
                     <Border Grid.Row="1" BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10"
                             HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Label Content="0 руб" FontSize="60"/>
+                        <Label Content="0 руб" FontSize="60" x:Name="MoneyInCashRegisterLabel"/>
                     </Border>
 
                     <!-- Средняя часть №2 -->
@@ -193,7 +204,7 @@
                         <!-- Изъятия -->
                         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
-                                <Label Content="Изъятия" FontSize="40"/>
+                                <Label Content="Изъятие" FontSize="40"/>
                             </Border>
 
                             <Label Content=":" FontSize="30" Margin="0,15,0,15"/>

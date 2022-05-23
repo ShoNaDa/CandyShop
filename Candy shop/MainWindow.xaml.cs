@@ -56,6 +56,17 @@ namespace Candy_shop
                 // Сохранить изменения в базе данных
                 _context.SaveChanges();
             }
+
+            //также нужно добавить 0 рублей в кассу
+            if (_context.CashRegister.FirstOrDefault() == null)
+            {
+                _context.CashRegister.Add(new CashRegister
+                {
+                    MoneyInCashRegister = 0
+                });
+                // Сохранить изменения в базе данных
+                _context.SaveChanges();
+            }
         }
 
         private void AuthButton_Click(object sender, RoutedEventArgs e)

@@ -25,7 +25,9 @@ namespace Candy_shop
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CashRegister> CashRegister { get; set; }
         public virtual DbSet<Manufacturers> Manufacturers { get; set; }
+        public virtual DbSet<MoneyTransactions> MoneyTransactions { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<ReceiptsOfProducts> ReceiptsOfProducts { get; set; }
         public virtual DbSet<SalesOfProducts> SalesOfProducts { get; set; }

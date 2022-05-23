@@ -5,12 +5,30 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище CandyShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CashRegister">
+          <Key>
+            <PropertyRef Name="CashRegisterID" />
+          </Key>
+          <Property Name="CashRegisterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MoneyInCashRegister" Type="money" Nullable="false" />
+        </EntityType>
         <EntityType Name="Manufacturers">
           <Key>
             <PropertyRef Name="ManufacturerID" />
           </Key>
           <Property Name="ManufacturerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameOfManufacturer" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MoneyTransactions">
+          <Key>
+            <PropertyRef Name="MoneyTransactionID" />
+          </Key>
+          <Property Name="MoneyTransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CashRegisterID_FK" Type="int" Nullable="false" />
+          <Property Name="WorkerID_FK" Type="int" Nullable="false" />
+          <Property Name="Deposits" Type="money" Nullable="false" />
+          <Property Name="Withdrawals" Type="money" Nullable="false" />
+          <Property Name="DateOfOperation" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -95,6 +113,30 @@
           <Property Name="CountOfProducts" Type="int" Nullable="false" />
           <Property Name="Info" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <Association Name="FK__MoneyTran__CashR__5EBF139D">
+          <End Role="CashRegister" Type="Self.CashRegister" Multiplicity="1" />
+          <End Role="MoneyTransactions" Type="Self.MoneyTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashRegister">
+              <PropertyRef Name="CashRegisterID" />
+            </Principal>
+            <Dependent Role="MoneyTransactions">
+              <PropertyRef Name="CashRegisterID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MoneyTran__Worke__5FB337D6">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+          <End Role="MoneyTransactions" Type="Self.MoneyTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="WorkerID" />
+            </Principal>
+            <Dependent Role="MoneyTransactions">
+              <PropertyRef Name="WorkerID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Products__Manufa__38996AB5">
           <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -204,7 +246,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище CandyShopModelContainer">
+          <EntitySet Name="CashRegister" EntityType="Self.CashRegister" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MoneyTransactions" EntityType="Self.MoneyTransactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptsOfProducts" EntityType="Self.ReceiptsOfProducts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesOfProducts" EntityType="Self.SalesOfProducts" Schema="dbo" store:Type="Tables" />
@@ -213,6 +257,14 @@
           <EntitySet Name="Warehouses" EntityType="Self.Warehouses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WritesOffOfProducts" EntityType="Self.WritesOffOfProducts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__MoneyTran__CashR__5EBF139D" Association="Self.FK__MoneyTran__CashR__5EBF139D">
+            <End Role="CashRegister" EntitySet="CashRegister" />
+            <End Role="MoneyTransactions" EntitySet="MoneyTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MoneyTran__Worke__5FB337D6" Association="Self.FK__MoneyTran__Worke__5FB337D6">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="MoneyTransactions" EntitySet="MoneyTransactions" />
+          </AssociationSet>
           <AssociationSet Name="FK__Products__Manufa__38996AB5" Association="Self.FK__Products__Manufa__38996AB5">
             <End Role="Manufacturers" EntitySet="Manufacturers" />
             <End Role="Products" EntitySet="Products" />
@@ -255,6 +307,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CandyShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CashRegister">
+          <Key>
+            <PropertyRef Name="CashRegisterID" />
+          </Key>
+          <Property Name="CashRegisterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MoneyInCashRegister" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="MoneyTransactions" Relationship="Self.FK__MoneyTran__CashR__5EBF139D" FromRole="CashRegister" ToRole="MoneyTransactions" />
+        </EntityType>
         <EntityType Name="Manufacturers">
           <Key>
             <PropertyRef Name="ManufacturerID" />
@@ -262,6 +322,19 @@
           <Property Name="ManufacturerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameOfManufacturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK__Products__Manufa__38996AB5" FromRole="Manufacturers" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="MoneyTransactions">
+          <Key>
+            <PropertyRef Name="MoneyTransactionID" />
+          </Key>
+          <Property Name="MoneyTransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CashRegisterID_FK" Type="Int32" Nullable="false" />
+          <Property Name="WorkerID_FK" Type="Int32" Nullable="false" />
+          <Property Name="Deposits" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Withdrawals" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DateOfOperation" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CashRegister" Relationship="Self.FK__MoneyTran__CashR__5EBF139D" FromRole="MoneyTransactions" ToRole="CashRegister" />
+          <NavigationProperty Name="Workers" Relationship="Self.FK__MoneyTran__Worke__5FB337D6" FromRole="MoneyTransactions" ToRole="Workers" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -349,6 +422,7 @@
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="MoneyTransactions" Relationship="Self.FK__MoneyTran__Worke__5FB337D6" FromRole="Workers" ToRole="MoneyTransactions" />
           <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__WorkerID__403A8C7D" FromRole="Workers" ToRole="Shifts" />
         </EntityType>
         <EntityType Name="WritesOffOfProducts">
@@ -363,6 +437,18 @@
           <NavigationProperty Name="Products" Relationship="Self.FK__WritesOff__Produ__46E78A0C" FromRole="WritesOffOfProducts" ToRole="Products" />
           <NavigationProperty Name="Shifts" Relationship="Self.FK__WritesOff__Shift__47DBAE45" FromRole="WritesOffOfProducts" ToRole="Shifts" />
         </EntityType>
+        <Association Name="FK__MoneyTran__CashR__5EBF139D">
+          <End Role="CashRegister" Type="Self.CashRegister" Multiplicity="1" />
+          <End Role="MoneyTransactions" Type="Self.MoneyTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CashRegister">
+              <PropertyRef Name="CashRegisterID" />
+            </Principal>
+            <Dependent Role="MoneyTransactions">
+              <PropertyRef Name="CashRegisterID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Products__Manufa__38996AB5">
           <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
           <End Role="Products" Type="Self.Products" Multiplicity="*" />
@@ -372,6 +458,18 @@
             </Principal>
             <Dependent Role="Products">
               <PropertyRef Name="ManufacturerID_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MoneyTran__Worke__5FB337D6">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="1" />
+          <End Role="MoneyTransactions" Type="Self.MoneyTransactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="WorkerID" />
+            </Principal>
+            <Dependent Role="MoneyTransactions">
+              <PropertyRef Name="WorkerID_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -472,7 +570,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CandyShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CashRegister" EntityType="Self.CashRegister" />
           <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" />
+          <EntitySet Name="MoneyTransactions" EntityType="Self.MoneyTransactions" />
           <EntitySet Name="Products" EntityType="Self.Products" />
           <EntitySet Name="ReceiptsOfProducts" EntityType="Self.ReceiptsOfProducts" />
           <EntitySet Name="SalesOfProducts" EntityType="Self.SalesOfProducts" />
@@ -481,9 +581,17 @@
           <EntitySet Name="Warehouses" EntityType="Self.Warehouses" />
           <EntitySet Name="Workers" EntityType="Self.Workers" />
           <EntitySet Name="WritesOffOfProducts" EntityType="Self.WritesOffOfProducts" />
+          <AssociationSet Name="FK__MoneyTran__CashR__5EBF139D" Association="Self.FK__MoneyTran__CashR__5EBF139D">
+            <End Role="CashRegister" EntitySet="CashRegister" />
+            <End Role="MoneyTransactions" EntitySet="MoneyTransactions" />
+          </AssociationSet>
           <AssociationSet Name="FK__Products__Manufa__38996AB5" Association="Self.FK__Products__Manufa__38996AB5">
             <End Role="Manufacturers" EntitySet="Manufacturers" />
             <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MoneyTran__Worke__5FB337D6" Association="Self.FK__MoneyTran__Worke__5FB337D6">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="MoneyTransactions" EntitySet="MoneyTransactions" />
           </AssociationSet>
           <AssociationSet Name="FK__ReceiptsO__Produ__4316F928" Association="Self.FK__ReceiptsO__Produ__4316F928">
             <End Role="Products" EntitySet="Products" />
@@ -524,11 +632,31 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище CandyShopModelContainer" CdmEntityContainer="CandyShopEntities">
+          <EntitySetMapping Name="CashRegister">
+            <EntityTypeMapping TypeName="CandyShopModel.CashRegister">
+              <MappingFragment StoreEntitySet="CashRegister">
+                <ScalarProperty Name="CashRegisterID" ColumnName="CashRegisterID" />
+                <ScalarProperty Name="MoneyInCashRegister" ColumnName="MoneyInCashRegister" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Manufacturers">
             <EntityTypeMapping TypeName="CandyShopModel.Manufacturers">
               <MappingFragment StoreEntitySet="Manufacturers">
                 <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
                 <ScalarProperty Name="NameOfManufacturer" ColumnName="NameOfManufacturer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoneyTransactions">
+            <EntityTypeMapping TypeName="CandyShopModel.MoneyTransactions">
+              <MappingFragment StoreEntitySet="MoneyTransactions">
+                <ScalarProperty Name="MoneyTransactionID" ColumnName="MoneyTransactionID" />
+                <ScalarProperty Name="CashRegisterID_FK" ColumnName="CashRegisterID_FK" />
+                <ScalarProperty Name="WorkerID_FK" ColumnName="WorkerID_FK" />
+                <ScalarProperty Name="Deposits" ColumnName="Deposits" />
+                <ScalarProperty Name="Withdrawals" ColumnName="Withdrawals" />
+                <ScalarProperty Name="DateOfOperation" ColumnName="DateOfOperation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

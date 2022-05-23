@@ -12,29 +12,18 @@ namespace Candy_shop
     using System;
     using System.Collections.Generic;
     
-    public partial class Workers
+    public partial class CashRegister
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Workers()
+        public CashRegister()
         {
             this.MoneyTransactions = new HashSet<MoneyTransactions>();
-            this.Shifts = new HashSet<Shifts>();
         }
     
-        public int WorkerID { get; set; }
-        public string WorkerCode { get; set; }
-        public string WorkerPassword { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string Post { get; set; }
-        public string Photo { get; set; }
-        public string Phone { get; set; }
-        public System.DateTime Birthday { get; set; }
+        public int CashRegisterID { get; set; }
+        public decimal MoneyInCashRegister { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MoneyTransactions> MoneyTransactions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shifts> Shifts { get; set; }
     }
 }

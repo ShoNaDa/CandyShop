@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8fdc0da4674a4eafab7333f6810f3ee6" Name="Diagram1">
+        <EntityTypeShape EntityType="CandyShopModel.CashRegister" Width="1.5" PointX="3.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.Manufacturers" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.MoneyTransactions" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.Products" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.ReceiptsOfProducts" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.SalesOfProducts" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.Shifts" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.Warehouses" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.Workers" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.WritesOffOfProducts" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="CandyShopModel.FK__MoneyTran__CashR__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__Products__Manufa__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__MoneyTran__Worke__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__ReceiptsO__Produ__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__SalesOfPr__Produ__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__Warehouse__Produ__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__WritesOff__Produ__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__ReceiptsO__Shift__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__SalesOfPr__Shift__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__Shifts__WorkerID__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="CandyShopModel.FK__WritesOff__Shift__47DBAE45" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

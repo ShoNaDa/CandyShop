@@ -54,8 +54,12 @@ namespace Candy_shop
             {
                 ManufacturerListBox.Items.Add($"{item.NameOfManufacturer}");
             }
+
+            //заполняем остаток в кассе
+            MoneyInCashRegisterLabel.Content = Convert.ToDouble(_context.CashRegister.ToList().FirstOrDefault().MoneyInCashRegister).ToString() + " руб";
         }
 
+        //добавить сотрудника
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             AddWorker addWorker = new AddWorker();
@@ -63,6 +67,7 @@ namespace Candy_shop
             Close();
         }
 
+        //удалить сотрудника
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (WorkersListBox.SelectedIndex != -1)
@@ -86,6 +91,7 @@ namespace Candy_shop
             }
         }
 
+        //добавить товар
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
             AddProduct addProduct = new AddProduct(true, null);
@@ -106,6 +112,7 @@ namespace Candy_shop
             }
         }
 
+        //удалить товар
         private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
         {
             if (ProductsDataGrid.SelectedIndex != -1)
@@ -130,6 +137,7 @@ namespace Candy_shop
             }
         }
 
+        //редактировать товар
         private void EditProductButton_Click(object sender, RoutedEventArgs e)
         {
             if (ProductsDataGrid.SelectedIndex != -1)
@@ -150,6 +158,7 @@ namespace Candy_shop
             }
         }
 
+        //добавить производителя
         private void AddManufacturerButton_Click(object sender, RoutedEventArgs e)
         {
             //проверка на заполнение полей
@@ -181,6 +190,7 @@ namespace Candy_shop
             }
         }
 
+        //удалить производителя
         private void DeleteManufacturerButton_Click(object sender, RoutedEventArgs e)
         {
             if (ManufacturerListBox.SelectedIndex != -1)
@@ -203,17 +213,65 @@ namespace Candy_shop
             }
         }
 
+        //операции в кассе
         private void PerformOperationButton_Click(object sender, RoutedEventArgs e)
         {
             //проверка на заполнение полей
             if (StringNotEmpty(DepositTextBox.Text) && StringNotEmpty(WithdrawalTextBox.Text))
             {
-                ///TODO: нужны проверки и сделать БД
+                //проверка правильности написания возвратов и внесений
+                if (CheckingForNumbersWithPoint(DepositTextBox.Text) &&
+                    CheckingForNumbersWithPoint(WithdrawalTextBox.Text))
+                {
+                    //проверка на то, чтобы в кассе не осталось меньше нуля в кассе
+                    if ((_context.CashRegister.ToList().FirstOrDefault().MoneyInCashRegister +
+                        Convert.ToDecimal(DepositTextBox.Text) - Convert.ToDecimal(WithdrawalTextBox.Text)) >= 0)
+                    {
+                        //добавление внесения и изъятия в БД
+                        _context.MoneyTransactions.Add(new MoneyTransactions
+                        {
+                            CashRegisterID_FK = _context.CashRegister.ToList().FirstOrDefault().CashRegisterID,
+                            WorkerID_FK = _context.Workers.ToList().FirstOrDefault(o => o.WorkerCode == MainWindow.codeAuthUser).WorkerID,
+                            Deposits = Convert.ToDecimal(DepositTextBox.Text),
+                            Withdrawals = Convert.ToDecimal(WithdrawalTextBox.Text),
+                            DateOfOperation = DateTime.Now
+                        });
+                        // Сохранить изменения в базе данных
+                        _context.SaveChanges();
+
+                        //изменяем деньги в кассе
+                        CashRegister cashRegister = _context.CashRegister.ToList().FirstOrDefault();
+                        cashRegister.MoneyInCashRegister += Convert.ToDecimal(DepositTextBox.Text) - Convert.ToDecimal(WithdrawalTextBox.Text);
+
+                        // Сохранить изменения в базе данных
+                        _context.SaveChanges();
+
+                        MenuDirector menuDirector = new MenuDirector();
+                        menuDirector.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        MsgView("Нельзя, чтобы в кассе было меньше нуля");
+                    }
+                }
+                else
+                {
+                    MsgView("В полях 'Внесение' и 'Изъятие' допущены ошибки");
+                }
             }
             else
             {
                 MsgView("Все поля должны быть заполнены (если нужна только одна операция поставьте нуль '0' во второй)");
             }
+        }
+
+        //выход
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
         }
     }
     public class ProductsData

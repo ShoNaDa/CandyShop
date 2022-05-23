@@ -70,8 +70,26 @@
     <Compile Include="AddProduct.xaml.cs">
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CandyShop.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CandyShop.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CandyShop.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CandyShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CandyShop.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CandyShop.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="CashRegister.cs">
+      <DependentUpon>CandyShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Manufacturers.cs">
-      <DependentUpon>MpdelDB.tt</DependentUpon>
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="MenuDirector.xaml.cs">
       <DependentUpon>MenuDirector.xaml</DependentUpon>
@@ -79,49 +97,37 @@
     <Compile Include="MenuSaler.xaml.cs">
       <DependentUpon>MenuSaler.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MpdelDB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MpdelDB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MpdelDB.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MpdelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MpdelDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MpdelDB.edmx</DependentUpon>
+    <Compile Include="MoneyTransactions.cs">
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Products.cs">
-      <DependentUpon>MpdelDB.tt</DependentUpon>
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReceiptsOfProducts.cs">
-      <DependentUpon>MpdelDB.tt</DependentUpon>
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesOfProducts.cs">
-      <DependentUpon>MpdelDB.tt</DependentUpon>
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Shifts.cs">
-      <DependentUpon>MpdelDB.tt</DependentUpon>
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>MpdelDB.tt</DependentUpon>
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="UsefulFunctions.cs" />
     <Compile Include="ValidateClass.cs" />
     <Compile Include="Warehouses.cs">
-      <DependentUpon>MpdelDB.tt</DependentUpon>
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Workers.cs">
-      <DependentUpon>MpdelDB.tt</DependentUpon>
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Compile Include="WritesOffOfProducts.cs">
-      <DependentUpon>MpdelDB.tt</DependentUpon>
+      <DependentUpon>CandyShop.tt</DependentUpon>
     </Compile>
     <Page Include="AddProduct.xaml">
       <SubType>Designer</SubType>
@@ -191,12 +197,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="MpdelDB.edmx">
+    <EntityDeploy Include="CandyShop.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MpdelDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>CandyShop.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="MpdelDB.edmx.diagram">
-      <DependentUpon>MpdelDB.edmx</DependentUpon>
+    <None Include="CandyShop.edmx.diagram">
+      <DependentUpon>CandyShop.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -220,19 +226,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\background.jpeg" />
-    <Content Include="MpdelDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MpdelDB.Context.cs</LastGenOutput>
-      <DependentUpon>MpdelDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="MpdelDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MpdelDB.edmx</DependentUpon>
-      <LastGenOutput>MpdelDB.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CandyShop.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CandyShop.edmx</DependentUpon>
+      <LastGenOutput>CandyShop.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CandyShop.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CandyShop.edmx</DependentUpon>
+      <LastGenOutput>CandyShop.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
