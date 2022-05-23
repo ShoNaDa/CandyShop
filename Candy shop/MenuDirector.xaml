@@ -94,6 +94,123 @@
                     </StackPanel>
                 </StackPanel>
             </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Производители" FontSize="30" />
+                </TabItem.Header>
+
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="0.2*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <ListBox MaxWidth="800" MinWidth="800" HorizontalAlignment="Left" Margin="10" 
+                                 Background="#FFCBFDAE" BorderBrush="#FF9A5F9C" BorderThickness="3" FontSize="25" x:Name="ManufacturerListBox"/>
+
+                        <!-- Добавить производителя -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Margin="10">
+
+                            <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
+                                <Label Content="Добавить производителя" FontSize="30" />
+                            </Border>
+
+                            <Label Content=":" FontSize="30" />
+
+                            <TextBox x:Name="ManufacturerTextBox" FontSize="30"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="440" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Orientation="Vertical">
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Images/add.png" />
+                            </Border.Background>
+                            <Button FontSize="50"   Margin="10"
+                        x:Name="AddManufacturerButton" Click="AddManufacturerButton_Click"/>
+                        </Border>
+
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Images/delete.png" />
+                            </Border.Background>
+                            <Button FontSize="50"   Margin="10" 
+                        x:Name="DeleteManufacturerButton" Click="DeleteManufacturerButton_Click"/>
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Касса" FontSize="30" />
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="0.6*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Верхняя часть -->
+                    <Border CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
+                BorderThickness="3" Background="#FFCBFDAE" Margin="0,5,0,0">
+                        <Label Content="Денег в кассе" FontSize="70" Padding="10,0,10,3" x:Name="titleLabel"/>
+                    </Border>
+
+                    <!-- Средняя часть №1 -->
+                    <Border Grid.Row="1" BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Content="0 руб" FontSize="60"/>
+                    </Border>
+
+                    <!-- Средняя часть №2 -->
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Внесения -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                <Label Content="Внесение" FontSize="40"/>
+                            </Border>
+
+                            <Label Content=":" FontSize="30" Margin="0,15,0,15"/>
+
+                            <TextBox Grid.Column="1" x:Name="DepositTextBox" FontSize="40"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="750"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="750" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- Изъятия -->
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                <Label Content="Изъятия" FontSize="40"/>
+                            </Border>
+
+                            <Label Content=":" FontSize="30" Margin="0,15,0,15"/>
+
+                            <TextBox Grid.Column="1" x:Name="WithdrawalTextBox" FontSize="40"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="775"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="775" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Нижняя часть -->
+                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
+                    Grid.Row="3" BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
+                        <Button Content="Выполнить" FontSize="40"   Margin="10,0,10,0" 
+                        x:Name="PerformOperationButton"  Click="PerformOperationButton_Click"  Padding="0,-2,0,0"/>
+                    </Border>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

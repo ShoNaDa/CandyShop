@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
+using static Candy_shop.ValidateClass;
+using static Candy_shop.UsefulFunctions;
 using System.Windows.Input;
 
 namespace Candy_shop
@@ -31,18 +31,29 @@ namespace Candy_shop
             //событие двойного нажатия мыши на ListBox
             WorkersListBox.MouseDoubleClick += new MouseButtonEventHandler(WorkersListBox_DoubleClick);
 
+            //заполняем список продуктов
             List<ProductsData> products = new List<ProductsData>();
 
             foreach (Products item in _context.Products.ToList())
             {
-                products.Add(new ProductsData() {
+                products.Add(new ProductsData()
+                {
                     productID = item.ProductID,
                     nameOfProduct = item.NameOfProduct,
                     price = Convert.ToDouble(item.Price),
                     nameOfManufacturer = _context.Manufacturers.ToList().FirstOrDefault(o => o.ManufacturerID == item.ManufacturerID_FK).NameOfManufacturer,
-                    expirationDate = item.ExpirationDate});
+                    expirationDate = item.ExpirationDate
+                });
             }
             ProductsDataGrid.ItemsSource = products;
+
+            //заполняем список производителей
+            ManufacturerListBox.Items.Clear();
+
+            foreach (var item in _context.Manufacturers.ToList())
+            {
+                ManufacturerListBox.Items.Add($"{item.NameOfManufacturer}");
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -71,13 +82,13 @@ namespace Candy_shop
             }
             else
             {
-                UsefulFunctions.MsgView("Выберите сотрудника из списка");
+                MsgView("Выберите сотрудника из списка");
             }
         }
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-            AddProduct addProduct = new AddProduct();
+            AddProduct addProduct = new AddProduct(true, null);
             addProduct.Show();
             Close();
         }
@@ -115,13 +126,94 @@ namespace Candy_shop
             }
             else
             {
-                UsefulFunctions.MsgView("Выберите сотрудника из списка");
+                MsgView("Выберите товар из списка");
             }
         }
 
         private void EditProductButton_Click(object sender, RoutedEventArgs e)
         {
+            if (ProductsDataGrid.SelectedIndex != -1)
+            {
+                //получаем строку, которая была выделена
+                ProductsData selectedString = (ProductsData)ProductsDataGrid.SelectedItem;
 
+                //находим выбранный продукт в БД
+                Products product = _context.Products.ToList().FirstOrDefault(o => o.ProductID == selectedString.productID);
+
+                AddProduct addProduct = new AddProduct(false, product);
+                addProduct.Show();
+                Close();
+            }
+            else
+            {
+                MsgView("Выберите товар из списка");
+            }
+        }
+
+        private void AddManufacturerButton_Click(object sender, RoutedEventArgs e)
+        {
+            //проверка на заполнение полей
+            if (StringNotEmpty(ManufacturerTextBox.Text))
+            {
+                //проверка на заглавную букву
+                if (FirstLetterIsLarge(ManufacturerTextBox.Text))
+                {
+                    //добавление в БД
+                    _context.Manufacturers.Add(new Manufacturers
+                    {
+                        NameOfManufacturer = ManufacturerTextBox.Text
+                    });
+                    // Сохранить изменения в базе данных
+                    _context.SaveChanges();
+
+                    MenuDirector menuDirector = new MenuDirector();
+                    menuDirector.Show();
+                    Close();
+                }
+                else
+                {
+                    MsgView("Поле 'Название' должно начинаться в заглавной буквы и написано кириллицей");
+                }
+            }
+            else
+            {
+                MsgView("Поле должно быть заполнено");
+            }
+        }
+
+        private void DeleteManufacturerButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ManufacturerListBox.SelectedIndex != -1)
+            {
+                //находим выбранного сотрудника в БД
+                Manufacturers manufacturer = _context.Manufacturers.ToList()
+                    .FirstOrDefault(o => o.NameOfManufacturer == ManufacturerListBox.SelectedValue.ToString());
+
+                //удаляем
+                _context.Manufacturers.Remove(manufacturer);
+                _context.SaveChanges();
+
+                MenuDirector menuDirector = new MenuDirector();
+                menuDirector.Show();
+                Close();
+            }
+            else
+            {
+                MsgView("Выберите производителя из списка");
+            }
+        }
+
+        private void PerformOperationButton_Click(object sender, RoutedEventArgs e)
+        {
+            //проверка на заполнение полей
+            if (StringNotEmpty(DepositTextBox.Text) && StringNotEmpty(WithdrawalTextBox.Text))
+            {
+                ///TODO: нужны проверки и сделать БД
+            }
+            else
+            {
+                MsgView("Все поля должны быть заполнены (если нужна только одна операция поставьте нуль '0' во второй)");
+            }
         }
     }
     public class ProductsData

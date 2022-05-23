@@ -13,8 +13,12 @@ namespace Candy_shop
     {
         //db
         readonly CandyShopEntities _context = new CandyShopEntities();
+        readonly Products productForEddition;
 
-        public AddProduct()
+        //bool
+        private readonly bool isAddingProduct;
+
+        public AddProduct(bool isAdding, Products product)
         {
             InitializeComponent();
 
@@ -22,6 +26,29 @@ namespace Candy_shop
             foreach (var item in _context.Manufacturers.ToList())
             {
                 ManufacturerComboBox.Items.Add(item.NameOfManufacturer);
+            }
+
+            isAddingProduct = isAdding;
+
+            //ставим соответствующие заголовки
+            if (isAddingProduct)
+            {
+                titleLabel.Content = "Добавление товара";
+                AddProductButton.Content = "Добавить";
+            }
+            else
+            {
+                titleLabel.Content = "Изменение товара";
+                AddProductButton.Content = "Изменить";
+
+                ProductNameTextBox.Text = product.NameOfProduct;
+                ProductPriceTextBox.Text = product.Price.ToString();
+                ProductExpirationTextBox.Text = product.ExpirationDate.ToString();
+                ManufacturerComboBox.Text = _context.Manufacturers.ToList()
+                                        .FirstOrDefault(o => o.ManufacturerID == product.ManufacturerID_FK).ToString();
+                PurchasePriceTextBox.Text = product.PurchasePrice.ToString();
+
+                productForEddition = product;
             }
         }
 
@@ -42,22 +69,43 @@ namespace Candy_shop
                         if (CheckingForNumbersWithPoint(ProductPriceTextBox.Text) &&
                             CheckingForNumbersWithPoint(PurchasePriceTextBox.Text))
                         {
-                            //добавление в БД
-                            _context.Products.Add(new Products
+                            //если происходит добавление товара, а не изменение
+                            if (isAddingProduct)
                             {
-                                ManufacturerID_FK = _context.Manufacturers.ToList()
-                                    .FirstOrDefault(o => o.NameOfManufacturer == ManufacturerComboBox.Text.Trim()).ManufacturerID,
-                                NameOfProduct = ProductNameTextBox.Text,
-                                Price = Convert.ToDecimal(ProductPriceTextBox.Text),
-                                PurchasePrice = Convert.ToDecimal(PurchasePriceTextBox.Text),
-                                ExpirationDate = Convert.ToInt32(ProductExpirationTextBox.Text)
-                            });
-                            // Сохранить изменения в базе данных
-                            _context.SaveChanges();
+                                //добавление в БД
+                                _context.Products.Add(new Products
+                                {
+                                    ManufacturerID_FK = _context.Manufacturers.ToList()
+                                        .FirstOrDefault(o => o.NameOfManufacturer == ManufacturerComboBox.Text.Trim()).ManufacturerID,
+                                    NameOfProduct = ProductNameTextBox.Text,
+                                    Price = Convert.ToDecimal(ProductPriceTextBox.Text),
+                                    PurchasePrice = Convert.ToDecimal(PurchasePriceTextBox.Text),
+                                    ExpirationDate = Convert.ToInt32(ProductExpirationTextBox.Text)
+                                });
+                                // Сохранить изменения в базе данных
+                                _context.SaveChanges();
 
-                            MenuDirector menuDirector = new MenuDirector();
-                            menuDirector.Show();
-                            Close();
+                                MenuDirector menuDirector = new MenuDirector();
+                                menuDirector.Show();
+                                Close();
+                            }
+                            else
+                            {
+                                Products product = _context.Products.FirstOrDefault(o => o.ProductID == productForEddition.ProductID);
+
+                                product.ManufacturerID_FK = _context.Manufacturers.ToList()
+                                        .FirstOrDefault(o => o.NameOfManufacturer == ManufacturerComboBox.Text.Trim()).ManufacturerID;
+                                product.NameOfProduct = ProductNameTextBox.Text;
+                                product.Price = Convert.ToDecimal(ProductPriceTextBox.Text);
+                                product.PurchasePrice = Convert.ToDecimal(PurchasePriceTextBox.Text);
+                                product.ExpirationDate = Convert.ToInt32(ProductExpirationTextBox.Text);
+
+                                _context.SaveChanges();
+
+                                MenuDirector menuDirector = new MenuDirector();
+                                menuDirector.Show();
+                                Close();
+                            }
                         }
                         else
                         {

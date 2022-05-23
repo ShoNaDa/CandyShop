@@ -20,7 +20,7 @@
         <!-- Верхняя часть -->
         <Border CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
                 BorderThickness="3" Background="#FFCBFDAE" Margin="0,5,0,0">
-            <Label Content="Добавление товара" FontSize="47" Padding="10,0,10,3"/>
+            <Label Content="Добавление товара" FontSize="47" Padding="10,0,10,3" x:Name="titleLabel"/>
         </Border>
 
         <!-- Средняя часть (2 полоска) -->
