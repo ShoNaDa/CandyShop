@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using static Candy_shop.UsefulFunctions;
 
 namespace Candy_shop
 {
@@ -16,9 +17,7 @@ namespace Candy_shop
 
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuDirector menuDirector = new MenuDirector();
-            menuDirector.Show();
-            Close();
+            OpenWindow(new MenuDirector(), this);
         }
     }
 }

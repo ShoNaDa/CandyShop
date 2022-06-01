@@ -44,9 +44,7 @@ namespace Candy_shop
 
         private void CancalButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuDirector menuDirector = new MenuDirector();
-            menuDirector.Show();
-            Close();
+            OpenWindow(new MenuDirector(), this);
         }
 
         private void AddWorkerButton_Click(object sender, RoutedEventArgs e)
@@ -158,9 +156,7 @@ namespace Candy_shop
                                         // Сохранить изменения в базе данных
                                         _context.SaveChanges();
 
-                                        GetCode getCode = new GetCode();
-                                        getCode.Show();
-                                        Close();
+                                        OpenWindow(new GetCode(), this);
                                     }
                                     else
                                     {

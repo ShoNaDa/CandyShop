@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace Candy_shop
 {
@@ -42,6 +39,13 @@ namespace Candy_shop
                 hash.Append(string.Format("{0:x2}", b));
             }
             return hash.ToString();
+        }
+
+        //функция открытия окна
+        public static void OpenWindow(Window windowToOpen, Window windowToClose)
+        {
+            windowToOpen.Show();
+            windowToClose.Close();
         }
     }
 }

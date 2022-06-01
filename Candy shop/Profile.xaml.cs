@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using static Candy_shop.UsefulFunctions;
 
 namespace Candy_shop
 {
@@ -36,9 +37,7 @@ namespace Candy_shop
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            MenuDirector menuDirector = new MenuDirector();
-            menuDirector.Show();
-            Close();
+            OpenWindow(new MenuDirector(), this);
         }
     }
 }

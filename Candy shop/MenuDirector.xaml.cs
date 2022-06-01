@@ -62,9 +62,7 @@ namespace Candy_shop
         //добавить сотрудника
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            AddWorker addWorker = new AddWorker();
-            addWorker.Show();
-            Close();
+            OpenWindow(new AddWorker(), this);
         }
 
         //удалить сотрудника
@@ -81,9 +79,7 @@ namespace Candy_shop
                 _context.Workers.Remove(worker);
                 _context.SaveChanges();
 
-                MenuDirector menuDirector = new MenuDirector();
-                menuDirector.Show();
-                Close();
+                OpenWindow(new MenuDirector(), this);
             }
             else
             {
@@ -94,9 +90,7 @@ namespace Candy_shop
         //добавить товар
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-            AddProduct addProduct = new AddProduct(true, null);
-            addProduct.Show();
-            Close();
+            OpenWindow(new AddProduct(true, null), this);
         }
 
         //событие двойного нажатия на сотрудника
@@ -106,9 +100,7 @@ namespace Candy_shop
             {
                 string selectedWorkerCode = WorkersListBox.SelectedItem.ToString().Split('|')[0].Trim();
 
-                Profile profile = new Profile(selectedWorkerCode);
-                profile.Show();
-                Close();
+                OpenWindow(new Profile(selectedWorkerCode), this);
             }
         }
 
@@ -127,9 +119,7 @@ namespace Candy_shop
                 _context.Products.Remove(product);
                 _context.SaveChanges();
 
-                MenuDirector menuDirector = new MenuDirector();
-                menuDirector.Show();
-                Close();
+                OpenWindow(new MenuDirector(), this);
             }
             else
             {
@@ -148,9 +138,7 @@ namespace Candy_shop
                 //находим выбранный продукт в БД
                 Products product = _context.Products.ToList().FirstOrDefault(o => o.ProductID == selectedString.productID);
 
-                AddProduct addProduct = new AddProduct(false, product);
-                addProduct.Show();
-                Close();
+                OpenWindow(new AddProduct(false, product), this);
             }
             else
             {
@@ -175,9 +163,7 @@ namespace Candy_shop
                     // Сохранить изменения в базе данных
                     _context.SaveChanges();
 
-                    MenuDirector menuDirector = new MenuDirector();
-                    menuDirector.Show();
-                    Close();
+                    OpenWindow(new MenuDirector(), this);
                 }
                 else
                 {
@@ -203,9 +189,7 @@ namespace Candy_shop
                 _context.Manufacturers.Remove(manufacturer);
                 _context.SaveChanges();
 
-                MenuDirector menuDirector = new MenuDirector();
-                menuDirector.Show();
-                Close();
+                OpenWindow(new MenuDirector(), this);
             }
             else
             {
@@ -246,9 +230,7 @@ namespace Candy_shop
                         // Сохранить изменения в базе данных
                         _context.SaveChanges();
 
-                        MenuDirector menuDirector = new MenuDirector();
-                        menuDirector.Show();
-                        Close();
+                        OpenWindow(new MenuDirector(), this);
                     }
                     else
                     {
@@ -269,12 +251,10 @@ namespace Candy_shop
         //выход
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Close();
+            OpenWindow(new MainWindow(), this);
         }
     }
-    public class ProductsData
+    internal class ProductsData
     {
         public int productID { get; set; }
         public string nameOfProduct { get; set; }

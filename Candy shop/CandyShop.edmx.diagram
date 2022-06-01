@@ -7,7 +7,7 @@
       <Diagram DiagramId="8fdc0da4674a4eafab7333f6810f3ee6" Name="Diagram1">
         <EntityTypeShape EntityType="CandyShopModel.CashRegister" Width="1.5" PointX="3.75" PointY="17.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CandyShopModel.Manufacturers" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CandyShopModel.MoneyTransactions" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CandyShopModel.MoneyTransactions" Width="1.5" PointX="8" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CandyShopModel.Products" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CandyShopModel.ReceiptsOfProducts" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="CandyShopModel.SalesOfProducts" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />

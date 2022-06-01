@@ -9,102 +9,17 @@
         WindowStartupLocation="CenterScreen">
 
     <Grid>
+        <!-- Выход -->
+        <Border HorizontalAlignment="Right" VerticalAlignment="Top" CornerRadius="25" Padding="5" Margin="0,10,10,0"
+                    BorderThickness="3" BorderBrush="#FF24686D" Background="#FFE68864" MinWidth="170" Panel.ZIndex="2">
+            <Button Content="Выход" FontSize="30"   Margin="10,0,10,0" 
+                        x:Name="ExitButton"  Click="ExitButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
+        </Border>
+        
         <TabControl>
             <TabControl.Background>
                 <SolidColorBrush Color="White" Opacity="0"/>
             </TabControl.Background>
-
-            <!-- Списание -->
-            <TabItem>
-                <TabItem.Header>
-                    <Label Content="Списание" FontSize="30" />
-                </TabItem.Header>
-
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="4*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-
-                    <!-- Верхняя часть -->
-                    <Border CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
-                BorderThickness="3" Background="#FFCBFDAE" Margin="0,5,0,0">
-                        <Label Content="Списание товаров" FontSize="47"  Padding="10,0,10,3"/>
-                    </Border>
-
-                    <!-- Средняя часть -->
-                    <Grid Grid.Row="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-
-                        <!-- Название товара -->
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Border Margin="10,0,0,0" BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
-                                <Label Content="Товар" FontSize="30" />
-                            </Border>
-
-                            <Label Content=":" FontSize="30" />
-
-                            <ComboBox x:Name="ProductsListComboBox" FontSize="30" BorderThickness="2"  Margin="5,0,0,0" MaxWidth="766"
-                         Padding="5" MinWidth="830" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                                <ComboBoxItem Background="#FFBCE38B" Content="Товар1"/>
-                                <ComboBoxItem Background="#FFBCE38B" Content="Аолжность 2"/>
-                                <ComboBoxItem Background="#FFBCE38B" Content="Волжность 3"/>
-                            </ComboBox>
-                        </StackPanel>
-
-                        <!-- Количество товара -->
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1">
-                            <Border Margin="5,0,0,0" BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
-                                <Label Content="Количество" FontSize="30" />
-                            </Border>
-
-                            <Label Content=":" FontSize="30" />
-
-                            <TextBox x:Name="ProductCountForWithdrawTextBox" FontSize="30"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="759" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        </StackPanel>
-
-                        <!-- Дополнительная информация о списании -->
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2">
-                            <!-- Вопросик -->
-                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
-                                <Border Background="#FF788B8B" CornerRadius="50">
-                                    <Label Content="?" FontSize="20"  Padding="9,1,9,0" Cursor="Help" ToolTipService.ShowDuration="60000">
-                                        <Label.ToolTip>
-                                            <ToolTip Background="#FFB1F788" FontSize="15">
-                                                <StackPanel>
-                                                    <Label Content="Дополнительная информации о списании товара. Необязательное поле."/>
-                                                </StackPanel>
-                                            </ToolTip>
-                                        </Label.ToolTip>
-                                    </Label>
-                                </Border>
-                            </StackPanel>
-
-                            <Border Margin="5,0,0,0" BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
-                                <Label Content="Дон. инфо" FontSize="30" />
-                            </Border>
-
-                            <Label Content=":" FontSize="30" />
-
-                            <TextBox x:Name="MoreInfoTextBox" FontSize="30"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
-                         Padding="5" BorderBrush="#FF4242C1" MinWidth="739" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-
-                    <!-- Нижняя часть -->
-                    <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
-                    BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170" Grid.Row="3">
-                        <Button Content="Сохранить" FontSize="40"   Margin="10,0,10,0" 
-                        x:Name="WithdrawProductButton"  Click="WithdrawProductButton_Click"  Padding="0,-2,0,0"/>
-                    </Border>
-                </Grid>
-            </TabItem>
 
             <!-- Поступление -->
             <TabItem>
@@ -141,11 +56,7 @@
                             <Label Content=":" FontSize="30" />
 
                             <ComboBox x:Name="ProductsComboBox" FontSize="30" BorderThickness="2"  Margin="5,0,0,0" MaxWidth="766"
-                         Padding="5" MinWidth="830" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                                <ComboBoxItem Background="#FFBCE38B" Content="Товар1"/>
-                                <ComboBoxItem Background="#FFBCE38B" Content="Аолжность 2"/>
-                                <ComboBoxItem Background="#FFBCE38B" Content="Волжность 3"/>
-                            </ComboBox>
+                         Padding="5" MinWidth="830" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </StackPanel>
 
                         <!-- Количество товара -->
@@ -164,7 +75,7 @@
                     <!-- Нижняя часть -->
                     <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170" Grid.Row="3">
-                        <Button Content="Сохранить" FontSize="40"   Margin="10,0,10,0" 
+                        <Button Content="Сохранить" FontSize="40" Margin="10,0,10,0" 
                         x:Name="AddProductButton"  Click="AddProductButton_Click"  Padding="0,-2,0,0"/>
                     </Border>
                 </Grid>
@@ -205,11 +116,7 @@
                             <Label Content=":" FontSize="30" />
 
                             <ComboBox x:Name="ProductsForSaleComboBox" FontSize="30" BorderThickness="2"  Margin="5,0,0,0" MaxWidth="766"
-                         Padding="5" MinWidth="830" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                                <ComboBoxItem Background="#FFBCE38B" Content="Товар1"/>
-                                <ComboBoxItem Background="#FFBCE38B" Content="Аолжность 2"/>
-                                <ComboBoxItem Background="#FFBCE38B" Content="Волжность 3"/>
-                            </ComboBox>
+                         Padding="5" MinWidth="830" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </StackPanel>
 
                         <!-- Количество товара -->
@@ -231,6 +138,181 @@
                         <Button Content="Сохранить" FontSize="40"   Margin="10,0,10,0" 
                         x:Name="SaleProductButton"  Click="SaleProductButton_Click"  Padding="0,-2,0,0"/>
                     </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Списание -->
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Списание" FontSize="30" />
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Верхняя часть -->
+                    <Border CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
+                BorderThickness="3" Background="#FFCBFDAE" Margin="0,5,0,0">
+                        <Label Content="Списание товаров" FontSize="47"  Padding="10,0,10,3"/>
+                    </Border>
+
+                    <!-- Средняя часть -->
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Название товара -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Border Margin="10,0,0,0" BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
+                                <Label Content="Товар" FontSize="30" />
+                            </Border>
+
+                            <Label Content=":" FontSize="30" />
+
+                            <ComboBox x:Name="ProductsListComboBox" FontSize="30" BorderThickness="2"  Margin="5,0,0,0" MaxWidth="766"
+                         Padding="5" MinWidth="830" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- Количество товара -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1">
+                            <Border Margin="5,0,0,0" BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
+                                <Label Content="Количество" FontSize="30" />
+                            </Border>
+
+                            <Label Content=":" FontSize="30" />
+
+                            <TextBox x:Name="ProductCountForWithdrawTextBox" FontSize="30"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="759" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!-- Дополнительная информация о списании -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2">
+                            <!-- Вопросик -->
+                            <StackPanel Orientation="Horizontal" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0">
+                                <Border Background="#FF788B8B" CornerRadius="50">
+                                    <Label Content="?" FontSize="20"  Padding="9,1,9,0" Cursor="Help" ToolTipService.ShowDuration="60000">
+                                        <Label.ToolTip>
+                                            <ToolTip Background="#FFB1F788" FontSize="15">
+                                                <StackPanel>
+                                                    <Label Content="Дополнительная информации о списании товара. Необязательное поле."/>
+                                                </StackPanel>
+                                            </ToolTip>
+                                        </Label.ToolTip>
+                                    </Label>
+                                </Border>
+                            </StackPanel>
+
+                            <Border Margin="5,0,0,0" BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10">
+                                <Label Content="Доп. инфо" FontSize="30" />
+                            </Border>
+
+                            <Label Content=":" FontSize="30" />
+
+                            <TextBox x:Name="MoreInfoTextBox" FontSize="30"  BorderThickness="0,0,0,2" Margin="5,0,0,0" MaxWidth="489"
+                         Padding="5" BorderBrush="#FF4242C1" MinWidth="739" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Нижняя часть -->
+                    <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170" Grid.Row="3">
+                        <Button Content="Сохранить" FontSize="40" Margin="10,0,10,0" 
+                        x:Name="WithdrawProductButton"  Click="WithdrawProductButton_Click"  Padding="0,-2,0,0"/>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Товары -->
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Товары" FontSize="30" />
+                </TabItem.Header>
+
+                <DataGrid MinWidth="950" HorizontalAlignment="Left" Margin="20" Background="#FFCBFDAE" IsReadOnly="true"
+                              BorderBrush="#FF9A5F9C" BorderThickness="3" FontSize="25" x:Name="ProductsDataGrid"
+                              AutoGenerateColumns="false" >
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Код" Binding="{Binding productID}" Visibility="Hidden"/>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding nameOfProduct}"/>
+                        <DataGridTextColumn Header="Цена (руб.)" Binding="{Binding price}"/>
+                        <DataGridTextColumn Header="Количество" Binding="{Binding count}"/>
+                        <DataGridTextColumn Header="Производитель" Binding="{Binding nameOfManufacturer}"/>
+                        <DataGridTextColumn Header="Срок годности (дней)" Binding="{Binding expirationDate}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            
+            <!-- Смена -->
+            <TabItem>
+                <TabItem.Header>
+                    <Label Content="Смена" FontSize="30" />
+                </TabItem.Header>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="1.5*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Верхняя часть -->
+                    <Border CornerRadius="20" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
+                BorderThickness="3" Background="#FF9BC582" Margin="0,5,0,0">
+                        <Label Content="Смена № 0" FontSize="50" Padding="10,0,10,3" x:Name="shiftNumberLabel"/>
+                    </Border>
+
+                    <!-- Средняя часть №1 -->
+                    <Border Grid.Row="1" CornerRadius="30" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="5" BorderBrush="#FF9A5F9C" 
+                BorderThickness="3" Background="#FFCBFDAE" Margin="0,5,0,0">
+                        <Label Content="Денег в кассе" FontSize="60" Padding="10,0,10,3"/>
+                    </Border>
+
+                    <!-- Средняя часть №2 -->
+                    <Border Grid.Row="2" BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10"
+                            HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Content="0 руб" FontSize="60" x:Name="MoneyInCashRegisterLabel"/>
+                    </Border>
+
+                    <!-- Средняя часть №2 -->
+                    <Grid Grid.Row="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Приход денег -->
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                <Label Content="Приход денег" FontSize="40"/>
+                            </Border>
+
+                            <Label Content=":" FontSize="30" Margin="0,15,0,15"/>
+
+                            <TextBlock Grid.Column="1" x:Name="ArriveTextBlock" FontSize="40" Margin="5,0,0,0" MaxWidth="640"
+                         Padding="5" MinWidth="640" HorizontalAlignment="Left" VerticalAlignment="Center" Text="0 руб"/>
+                        </StackPanel>
+
+                        <!-- Расход денег -->
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Border BorderThickness="2" BorderBrush="#FF4242C1" CornerRadius="10" Margin="10">
+                                <Label Content="Расход денег" FontSize="40"/>
+                            </Border>
+
+                            <Label Content=":" FontSize="30" Margin="0,15,0,15"/>
+
+                            <TextBlock Grid.Column="1" x:Name="FlowTextBlock" FontSize="40" Margin="5,0,0,0" MaxWidth="650"
+                         Padding="5" MinWidth="650" HorizontalAlignment="Left" VerticalAlignment="Center" Text="0 руб"/>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>

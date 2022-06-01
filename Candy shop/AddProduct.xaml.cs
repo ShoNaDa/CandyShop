@@ -82,12 +82,11 @@ namespace Candy_shop
                                     PurchasePrice = Convert.ToDecimal(PurchasePriceTextBox.Text),
                                     ExpirationDate = Convert.ToInt32(ProductExpirationTextBox.Text)
                                 });
+
                                 // Сохранить изменения в базе данных
                                 _context.SaveChanges();
 
-                                MenuDirector menuDirector = new MenuDirector();
-                                menuDirector.Show();
-                                Close();
+                                OpenWindow(new MenuDirector(), this);
                             }
                             else
                             {
@@ -102,9 +101,7 @@ namespace Candy_shop
 
                                 _context.SaveChanges();
 
-                                MenuDirector menuDirector = new MenuDirector();
-                                menuDirector.Show();
-                                Close();
+                                OpenWindow(new MenuDirector(), this);
                             }
                         }
                         else
@@ -130,9 +127,7 @@ namespace Candy_shop
 
         private void CancalButton_Click(object sender, RoutedEventArgs e)
         {
-            MenuDirector menuDirector = new MenuDirector();
-            menuDirector.Show();
-            Close();
+            OpenWindow(new MenuDirector(), this);
         }
     }
 }

@@ -95,15 +95,11 @@ namespace Candy_shop
 
                                 if (item.Post == "Администратор")
                                 {
-                                    MenuDirector menuDirector = new MenuDirector();
-                                    menuDirector.Show();
-                                    Close();
+                                    OpenWindow(new MenuDirector(), this);
                                 }
                                 else
                                 {
-                                    MenuSaler menuSaler = new MenuSaler();
-                                    menuSaler.Show();
-                                    Close();
+                                    OpenWindow(new MenuSaler(), this);
                                 }
                             }
                             else
