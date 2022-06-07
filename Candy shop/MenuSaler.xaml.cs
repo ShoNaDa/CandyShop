@@ -158,7 +158,34 @@ namespace Candy_shop
                 //проверка на цифры
                 if (CheckingForNumbers(ProductCountForWithdrawTextBox.Text))
                 {
+                    //проверка на количество
+                    if (_context.Warehouses.ToList().FirstOrDefault(o => o.ProductID_FK == _context.Products.ToList().
+                            FirstOrDefault(k => k.NameOfProduct == ProductsListComboBox.Text).ProductID).CountOfProducts >=
+                            Convert.ToInt32(ProductCountForWithdrawTextBox.Text))
+                    {
+                        //добавление в БД списание товаров
+                        _context.WritesOffOfProducts.Add(new WritesOffOfProducts
+                        {
+                            ProductID_FK = _context.Products.ToList().FirstOrDefault(o => o.NameOfProduct == ProductsListComboBox.Text).ProductID,
+                            ShiftID_FK = _context.Shifts.Max(o => o.ShiftID),
+                            CountOfProducts = Convert.ToInt32(ProductCountForWithdrawTextBox.Text),
+                            Info = MoreInfoTextBox.Text.Trim()
+                        });
 
+                        //вычитаем товары в складе
+                        _context.Warehouses.ToList().FirstOrDefault(o => o.ProductID_FK == _context.Products.ToList().
+                                FirstOrDefault(k => k.NameOfProduct == ProductsListComboBox.Text).ProductID).CountOfProducts -=
+                                Convert.ToInt32(ProductCountForWithdrawTextBox.Text);
+
+                        // Сохранить изменения в базе данных
+                        _context.SaveChanges();
+
+                        OpenWindow(new MenuSaler(), this);
+                    }
+                    else
+                    {
+                        MsgView("Нельзя, чтобы количество товара было меньше нуля");
+                    }
                 }
                 else
                 {

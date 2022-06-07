@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Height="700" 
-        Width="1000"
+        Width="800"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -17,7 +17,7 @@
         <!-- Верхняя часть -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.75*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 

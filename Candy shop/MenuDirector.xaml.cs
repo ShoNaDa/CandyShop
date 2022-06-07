@@ -253,7 +253,43 @@ namespace Candy_shop
         {
             OpenWindow(new MainWindow(), this);
         }
+
+        //дальше отчеты
+        private void ShiftsReportButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShiftInDateReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DateOfShiftDatePicker.SelectedDate != null)
+            {
+
+            }
+        }
+
+        private void ShiftsWithWorkerReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (WorkersComboBox.SelectedIndex != -1)
+            {
+
+            }
+        }
+
+        private void ShiftsWithProductReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ProductsComboBox.SelectedIndex != -1)
+            {
+
+            }
+        }
+
+        private void MoneyOperationsReportButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
+
     internal class ProductsData
     {
         public int productID { get; set; }
