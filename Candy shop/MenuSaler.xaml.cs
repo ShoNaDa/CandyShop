@@ -15,6 +15,9 @@ namespace Candy_shop
         //db
         readonly CandyShopEntities _context = new CandyShopEntities();
 
+        //bool
+        private static bool isFirstOpening = true;
+
         public MenuSaler()
         {
             InitializeComponent();
@@ -32,33 +35,35 @@ namespace Candy_shop
 
             foreach (var item in _context.Warehouses.ToList())
             {
-                ProductsForSaleComboBox.Items.Add(_context.Products.ToList().FirstOrDefault(o => o.ProductID == item.ProductID_FK).NameOfProduct +
-                    ", " + item.CountOfProducts);
-                ProductsForSaleComboBox.Items.Add(_context.Products.ToList().FirstOrDefault(o => o.ProductID == item.ProductID_FK).NameOfProduct +
-                    ", " + item.CountOfProducts);
+                ProductsForSaleComboBox.Items.Add(_context.Products.ToList().FirstOrDefault(o => o.ProductID == item.ProductID_FK).NameOfProduct);
+                ProductsListComboBox.Items.Add(_context.Products.ToList().FirstOrDefault(o => o.ProductID == item.ProductID_FK).NameOfProduct);
             }
 
-            //TODO: раскоментить
-            ////смену в БД
-            //_context.Shifts.Add(new Shifts
-            //{
-            //    WorkerID_FK = _context.Workers.ToList().FirstOrDefault(o => o.WorkerCode == MainWindow.codeAuthUser).WorkerID,
-            //    ArriveOfMoney = 0,
-            //    FlowOfNomey = 0,
-            //    MoneyAtStartShift = _context.CashRegister.ToList().FirstOrDefault().MoneyInCashRegister,
-            //    ShiftDate = DateTime.Now
-            //});
-            // Сохранить изменения в базе данных
-            _context.SaveChanges();
+            //открываем смену в БД, если не вошел
+            if (isFirstOpening)
+            {
+                _context.Shifts.Add(new Shifts
+                {
+                    WorkerID_FK = _context.Workers.ToList().FirstOrDefault(o => o.WorkerCode == MainWindow.codeAuthUser).WorkerID,
+                    ArriveOfMoney = 0,
+                    FlowOfNomey = 0,
+                    MoneyAtStartShift = _context.CashRegister.ToList().FirstOrDefault().MoneyInCashRegister,
+                    ShiftDate = DateTime.Now
+                });
+                //Сохранить изменения в базе данных
+                _context.SaveChanges();
+
+                isFirstOpening = false;
+            }
 
             //заполняем смену
             shiftNumberLabel.Content = "Смена №" + _context.Shifts.ToList().Count;
 
             MoneyInCashRegisterLabel.Content = Convert.ToDouble(_context.CashRegister.ToList().FirstOrDefault().MoneyInCashRegister) + " руб";
 
-            ArriveTextBlock.Text = _context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == _context.Shifts.ToList().Count).ArriveOfMoney + " руб";
+            ArriveTextBlock.Text = $"{Convert.ToDouble(_context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == _context.Shifts.ToList().Count).ArriveOfMoney)} руб";
 
-            FlowTextBlock.Text = $"{_context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == _context.Shifts.ToList().Count).FlowOfNomey} руб";
+            FlowTextBlock.Text = $"{Convert.ToDouble(_context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == _context.Shifts.ToList().Count).FlowOfNomey)} руб";
 
             //заполняем товары
             List<ProductsDataForSaler> products = new List<ProductsDataForSaler>();
@@ -89,10 +94,10 @@ namespace Candy_shop
                 {
                     //проверка на деньги
                     if ((_context.CashRegister.ToList().FirstOrDefault().MoneyInCashRegister -
-                            Convert.ToInt32(ProductCountTextBox.Text) * _context.Products.ToList().FirstOrDefault(o => o.NameOfProduct == ProductsComboBox.Text).ProductID) >= 0)
+                            Convert.ToInt32(ProductCountTextBox.Text) * _context.Products.ToList().FirstOrDefault(o => o.NameOfProduct == ProductsComboBox.Text).PurchasePrice) >= 0)
                     {
                         //это сколько денег расходуется
-                        var flowCash = Convert.ToInt32(ProductCountTextBox.Text) * _context.Products.ToList().FirstOrDefault(o => o.NameOfProduct == ProductsComboBox.Text).ProductID;
+                        var flowCash = Convert.ToInt32(ProductCountTextBox.Text) * _context.Products.ToList().FirstOrDefault(o => o.NameOfProduct == ProductsComboBox.Text).PurchasePrice;
 
                         //добавление в БД поступление товаров
                         _context.ReceiptsOfProducts.Add(new ReceiptsOfProducts
@@ -174,7 +179,42 @@ namespace Candy_shop
                 //проверка на цифры
                 if (CheckingForNumbers(ProductCountForSaleTextBox.Text))
                 {
+                    //проверка на количество
+                    if (_context.Warehouses.ToList().FirstOrDefault(o => o.ProductID_FK == _context.Products.ToList().
+                            FirstOrDefault(k => k.NameOfProduct == ProductsForSaleComboBox.Text).ProductID).CountOfProducts >=
+                            Convert.ToInt32(ProductCountForSaleTextBox.Text))
+                    {
+                        //это сколько денег поступает
+                        var arriveCash = Convert.ToInt32(ProductCountForSaleTextBox.Text) * _context.Products.ToList().FirstOrDefault(o => o.NameOfProduct == ProductsForSaleComboBox.Text).Price;
 
+                        //добавление в БД продажу товаров
+                        _context.SalesOfProducts.Add(new SalesOfProducts
+                        {
+                            ProductID_FK = _context.Products.ToList().FirstOrDefault(o => o.NameOfProduct == ProductsForSaleComboBox.Text).ProductID,
+                            ShiftID_FK = _context.Shifts.Max(o => o.ShiftID),
+                            CountOfProducts = Convert.ToInt32(ProductCountForSaleTextBox.Text)
+                        });
+
+                        //изменяем инфу о смене
+                        _context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == _context.Shifts.Max(p => p.ShiftID)).ArriveOfMoney += arriveCash;
+
+                        //изменяем деньги в кассе
+                        _context.CashRegister.ToList().FirstOrDefault().MoneyInCashRegister += arriveCash;
+
+                        //вычитаем товары в складе
+                        _context.Warehouses.ToList().FirstOrDefault(o => o.ProductID_FK == _context.Products.ToList().
+                                FirstOrDefault(k => k.NameOfProduct == ProductsForSaleComboBox.Text).ProductID).CountOfProducts -=
+                                Convert.ToInt32(ProductCountForSaleTextBox.Text);
+
+                        // Сохранить изменения в базе данных
+                        _context.SaveChanges();
+
+                        OpenWindow(new MenuSaler(), this);
+                    }
+                    else
+                    {
+                        MsgView("Нельзя, чтобы количество товара было меньше нуля");
+                    }
                 }
                 else
                 {
@@ -189,6 +229,8 @@ namespace Candy_shop
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
+            isFirstOpening = true;
+
             ///TODO: надо сделать штуку с закрытием смены (типо мини отчет)
             OpenWindow(new MainWindow(), this);
         }

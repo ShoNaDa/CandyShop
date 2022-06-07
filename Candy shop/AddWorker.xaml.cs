@@ -15,7 +15,7 @@ namespace Candy_shop
     {
         //string
         public static string uniqueCode = string.Empty;
-        public static string imageSource = "/Images/Photo.jpg";
+        public static string imageSource = null;
 
         //db
         readonly CandyShopEntities _context = new CandyShopEntities();

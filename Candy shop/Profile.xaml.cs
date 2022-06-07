@@ -29,10 +29,14 @@ namespace Candy_shop
             postLabel.Content = userInfo.Post;
             birthdayLabel.Content = userInfo.Birthday.ToShortDateString();
 
-            if (userInfo.Photo != null)
+            try
             {
-                image.ImageSource = new BitmapImage(new Uri(userInfo.Photo));
+                if (userInfo.Photo != null)
+                {
+                    image.ImageSource = new BitmapImage(new Uri(userInfo.Photo));
+                }
             }
+            catch { }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

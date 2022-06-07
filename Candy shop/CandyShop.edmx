@@ -4,13 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище CandyShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище CandyShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CashRegister">
           <Key>
             <PropertyRef Name="CashRegisterID" />
           </Key>
           <Property Name="CashRegisterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MoneyInCashRegister" Type="money" Nullable="false" />
+          <Property Name="MoneyInCashRegister" Type="decimal" Precision="19" Scale="4" Nullable="false" />
         </EntityType>
         <EntityType Name="Manufacturers">
           <Key>
@@ -26,9 +26,9 @@
           <Property Name="MoneyTransactionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CashRegisterID_FK" Type="int" Nullable="false" />
           <Property Name="WorkerID_FK" Type="int" Nullable="false" />
-          <Property Name="Deposits" Type="money" Nullable="false" />
-          <Property Name="Withdrawals" Type="money" Nullable="false" />
-          <Property Name="DateOfOperation" Type="date" Nullable="false" />
+          <Property Name="Deposits" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Withdrawals" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DateOfOperation" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -37,8 +37,8 @@
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ManufacturerID_FK" Type="int" Nullable="false" />
           <Property Name="NameOfProduct" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Price" Type="money" Nullable="false" />
-          <Property Name="PurchasePrice" Type="money" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PurchasePrice" Type="decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="ExpirationDate" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ReceiptsOfProducts">
@@ -65,10 +65,10 @@
           </Key>
           <Property Name="ShiftID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WorkerID_FK" Type="int" Nullable="false" />
-          <Property Name="ArriveOfMoney" Type="money" Nullable="false" />
-          <Property Name="FlowOfNomey" Type="money" Nullable="false" />
-          <Property Name="MoneyAtStartShift" Type="money" Nullable="false" />
-          <Property Name="ShiftDate" Type="date" Nullable="false" />
+          <Property Name="ArriveOfMoney" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="FlowOfNomey" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MoneyAtStartShift" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ShiftDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -101,7 +101,7 @@
           <Property Name="Post" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Photo" Type="nvarchar(max)" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" />
-          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Birthday" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="WritesOffOfProducts">
           <Key>
@@ -302,8 +302,7 @@
             <End Role="WritesOffOfProducts" EntitySet="WritesOffOfProducts" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CandyShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -332,7 +331,7 @@
           <Property Name="WorkerID_FK" Type="Int32" Nullable="false" />
           <Property Name="Deposits" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Withdrawals" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="DateOfOperation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfOperation" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CashRegister" Relationship="Self.FK__MoneyTran__CashR__5EBF139D" FromRole="MoneyTransactions" ToRole="CashRegister" />
           <NavigationProperty Name="Workers" Relationship="Self.FK__MoneyTran__Worke__5FB337D6" FromRole="MoneyTransactions" ToRole="Workers" />
         </EntityType>
@@ -383,7 +382,7 @@
           <Property Name="ArriveOfMoney" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="FlowOfNomey" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="MoneyAtStartShift" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="ShiftDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ShiftDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="ReceiptsOfProducts" Relationship="Self.FK__ReceiptsO__Shift__440B1D61" FromRole="Shifts" ToRole="ReceiptsOfProducts" />
           <NavigationProperty Name="SalesOfProducts" Relationship="Self.FK__SalesOfPr__Shift__4BAC3F29" FromRole="Shifts" ToRole="SalesOfProducts" />
           <NavigationProperty Name="Workers" Relationship="Self.FK__Shifts__WorkerID__403A8C7D" FromRole="Shifts" ToRole="Workers" />
@@ -421,7 +420,7 @@
           <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="MoneyTransactions" Relationship="Self.FK__MoneyTran__Worke__5FB337D6" FromRole="Workers" ToRole="MoneyTransactions" />
           <NavigationProperty Name="Shifts" Relationship="Self.FK__Shifts__WorkerID__403A8C7D" FromRole="Workers" ToRole="Shifts" />
         </EntityType>
