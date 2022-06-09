@@ -59,10 +59,17 @@ namespace Candy_shop
             MoneyInCashRegisterLabel.Content = Convert.ToDouble(_context.CashRegister.ToList().FirstOrDefault().MoneyInCashRegister).ToString() + " руб";
         }
 
+        #region сотрудники
         //добавить сотрудника
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             OpenWindow(new AddWorker(), this);
+        }
+
+        //редактировать сотрудника
+        private void EditWorkerButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         //удалить сотрудника
@@ -87,12 +94,6 @@ namespace Candy_shop
             }
         }
 
-        //добавить товар
-        private void AddProductButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpenWindow(new AddProduct(true, null), this);
-        }
-
         //событие двойного нажатия на сотрудника
         private void WorkersListBox_DoubleClick(object sender, EventArgs e)
         {
@@ -102,6 +103,14 @@ namespace Candy_shop
 
                 OpenWindow(new Profile(selectedWorkerCode), this);
             }
+        }
+        #endregion
+
+        #region товары
+        //добавить товар
+        private void AddProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenWindow(new AddProduct(true, null), this);
         }
 
         //удалить товар
@@ -145,7 +154,9 @@ namespace Candy_shop
                 MsgView("Выберите товар из списка");
             }
         }
+        #endregion
 
+        #region производители
         //добавить производителя
         private void AddManufacturerButton_Click(object sender, RoutedEventArgs e)
         {
@@ -196,6 +207,7 @@ namespace Candy_shop
                 MsgView("Выберите производителя из списка");
             }
         }
+        #endregion
 
         //операции в кассе
         private void PerformOperationButton_Click(object sender, RoutedEventArgs e)
@@ -254,20 +266,82 @@ namespace Candy_shop
             OpenWindow(new MainWindow(), this);
         }
 
-        //дальше отчеты
+        #region отчеты
+        //отчет по всем сменам
         private void ShiftsReportButton_Click(object sender, RoutedEventArgs e)
         {
+            List<List<string>> listWithInfo = new List<List<string>>();
 
+            //создаем список для отчета
+            foreach (var item in _context.Shifts.ToList())
+            {
+                listWithInfo.Add(new List<string> {
+                    item.ShiftID.ToString(),
+                    item.ShiftDate.ToShortDateString().ToString(),
+                    _context.Workers.ToList().FirstOrDefault(o => o.WorkerID == item.WorkerID_FK).LastName + " " +
+                    _context.Workers.ToList().FirstOrDefault(o => o.WorkerID == item.WorkerID_FK).FirstName + " " +
+                    _context.Workers.ToList().FirstOrDefault(o => o.WorkerID == item.WorkerID_FK).MiddleName,
+                    Convert.ToDouble(item.ArriveOfMoney).ToString(),
+                    Convert.ToDouble(item.FlowOfNomey).ToString(),
+                    Convert.ToDouble(item.MoneyAtStartShift).ToString() });
+            }
+
+            //создаем сам отчет
+            CreateExcelFile("Отчет по всем сменам", 6,
+                new Dictionary<char, string> { { 'A',"Смена №" }, { 'B', "Дата" }, { 'C', "Сотрудник" }, { 'D', "Приход денег" },
+                  { 'E', "Расход денег" }, { 'F', "Денег в начале смены" } }, listWithInfo);
         }
 
+        //отчет по одной смене
         private void ShiftInDateReportButton_Click(object sender, RoutedEventArgs e)
         {
             if (DateOfShiftDatePicker.SelectedDate != null)
             {
+                //получаем номер смены по дате
+                int numberOfShift = _context.Shifts.ToList().FirstOrDefault(o => o.ShiftDate.ToShortDateString() ==
+                    Convert.ToDateTime(DateOfShiftDatePicker.SelectedDate).ToShortDateString()).ShiftID + 1;
 
+                List<List<string>> listWithInfo = new List<List<string>>();
+
+                //я слабый, потому что не придумал, как это покороче написать
+                int[] massCounts = new int[3] {
+                    _context.SalesOfProducts.ToList().Where(o => o.ShiftID_FK == numberOfShift).Count(),
+                    _context.ReceiptsOfProducts.ToList().Where(o => o.ShiftID_FK == numberOfShift).Count(),
+                    _context.WritesOffOfProducts.ToList().Where(o => o.ShiftID_FK == numberOfShift).Count() };
+
+                int maxCount = 0;
+                for (int i = 0; i < massCounts.Length; i++)
+                {
+                    maxCount = maxCount < massCounts[i] ? massCounts[i] : maxCount;
+                }
+
+                //создаем список для отчета
+                foreach (var item in _context.Warehouses.ToList())
+                {
+                    listWithInfo.Add(new List<string> {
+                    _context.Workers.ToList().FirstOrDefault(o => o.WorkerID == _context.Shifts.ToList().FirstOrDefault(p => p.ShiftID == numberOfShift).WorkerID_FK).LastName + " " +
+                    _context.Workers.ToList().FirstOrDefault(o => o.WorkerID == _context.Shifts.ToList().FirstOrDefault(p => p.ShiftID == numberOfShift).WorkerID_FK).FirstName + " " +
+                    _context.Workers.ToList().FirstOrDefault(o => o.WorkerID == _context.Shifts.ToList().FirstOrDefault(p => p.ShiftID == numberOfShift).WorkerID_FK).MiddleName,
+                    _context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == numberOfShift).ArriveOfMoney.ToString(),
+                    _context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == numberOfShift).FlowOfNomey.ToString(),
+                    _context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == numberOfShift).MoneyAtStartShift.ToString(),
+                    _context.Products.ToList().FirstOrDefault(o => o.ProductID == item.ProductID_FK).NameOfProduct,
+                    _context.ReceiptsOfProducts.ToList().Where(o => o.ShiftID_FK == numberOfShift && o.ProductID_FK == item.ProductID_FK).Sum(p => p.CountOfProducts).ToString(),
+                    _context.SalesOfProducts.ToList().Where(o => o.ShiftID_FK == numberOfShift && o.ProductID_FK == item.ProductID_FK).Sum(p => p.CountOfProducts).ToString(),
+                    _context.WritesOffOfProducts.ToList().Where(o => o.ShiftID_FK == numberOfShift && o.ProductID_FK == item.ProductID_FK).Sum(p => p.CountOfProducts).ToString()});
+                }
+
+                //создаем сам отчет
+                DateTime date = (DateTime)DateOfShiftDatePicker.SelectedDate;
+
+                CreateExcelFile($"Отчет по смене №{numberOfShift} {date.ToShortDateString()}", 8,
+                    new Dictionary<char, string> { { 'A',"Сотрудник" }, { 'B', "Приход денег" }, { 'C', "Расход денег" }, { 'D', "Денег в начале смены" },
+                        { 'E', "Товар" }, { 'F', "Поступления (кол.)" }, { 'G', "Продажи (кол.)" }, { 'H', "Списания (кол.)" } },
+                        listWithInfo);
             }
         }
 
+        //отчет по сотруднику
         private void ShiftsWithWorkerReportButton_Click(object sender, RoutedEventArgs e)
         {
             if (WorkersComboBox.SelectedIndex != -1)
@@ -276,6 +350,7 @@ namespace Candy_shop
             }
         }
 
+        //отчет по товару
         private void ShiftsWithProductReportButton_Click(object sender, RoutedEventArgs e)
         {
             if (ProductsComboBox.SelectedIndex != -1)
@@ -284,10 +359,12 @@ namespace Candy_shop
             }
         }
 
+        //отчет по транзакциям
         private void MoneyOperationsReportButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
+        #endregion
     }
 
     internal class ProductsData

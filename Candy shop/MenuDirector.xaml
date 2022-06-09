@@ -45,6 +45,15 @@
                         <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
                     BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
                             <Border.Background>
+                                <ImageBrush ImageSource="/Images/edit.jpg"/>
+                            </Border.Background>
+                            <Button FontSize="50" Margin="10" 
+                        x:Name="EditWorkerButton" Click="EditWorkerButton_Click"/>
+                        </Border>
+
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="100"
+                    BorderThickness="3" BorderBrush="#FF9A5F9C" MinWidth="100" MinHeight="100" Margin="10">
+                            <Border.Background>
                                 <ImageBrush ImageSource="/Images/delete.png" />
                             </Border.Background>
                             <Button FontSize="50"   Margin="10" 
@@ -241,10 +250,10 @@
 
                     <!-- отчет по сменам -->
                     <Border BorderThickness="0,0,0,2" BorderBrush="Black">
-                        <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
-                        BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
+                        <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="25" Padding="5"
+                            BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FFA7B1A1" MinWidth="170" Margin="10">
                             <Button Content="Скачать отчет по всем сменам" FontSize="40"   Margin="10,0,10,0" 
-                        x:Name="ShiftsReportButton"  Click="ShiftsReportButton_Click"  Padding="0,-2,0,0"/>
+                                x:Name="ShiftsReportButton"  Click="ShiftsReportButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
                         </Border>
                     </Border>
 
@@ -253,13 +262,13 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="0.6*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
-                             BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
+                            <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="25" Padding="5"
+                                BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FFA7B1A1" MinWidth="170" Margin="10">
                                 <Button Content="Скачать отчет по смене" FontSize="40"   Margin="10,0,10,0" 
-                                x:Name="ShiftInDateReportButton"  Click="ShiftInDateReportButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
+                                    x:Name="ShiftInDateReportButton"  Click="ShiftInDateReportButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
                             </Border>
 
                             <StackPanel Grid.Column="1" Margin="10">
@@ -278,13 +287,13 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="0.6*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
-                             BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
+                            <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="25" Padding="5"
+                                BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FFA7B1A1" MinWidth="170" Margin="10">
                                 <Button Content="Скачать отчет по работнику" FontSize="40"   Margin="10,0,10,0" 
-                                x:Name="ShiftsWithWorkerReportButton"  Click="ShiftsWithWorkerReportButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
+                                    x:Name="ShiftsWithWorkerReportButton"  Click="ShiftsWithWorkerReportButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
                             </Border>
 
                             <StackPanel Grid.Column="1" Margin="10">
@@ -303,13 +312,13 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="0.6*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
-                             BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170">
+                            <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="25" Padding="5"
+                                BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FFA7B1A1" MinWidth="170" Margin="10">
                                 <Button Content="Скачать отчет по товару" FontSize="40"   Margin="10,0,10,0" 
-                                x:Name="ShiftsWithProductReportButton"  Click="ShiftsWithProductReportButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
+                                    x:Name="ShiftsWithProductReportButton"  Click="ShiftsWithProductReportButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
                             </Border>
 
                             <StackPanel Grid.Column="1" Margin="10">
@@ -324,10 +333,10 @@
                     </Border>
 
                     <!-- отчет по транзакциям -->
-                    <Border HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="25" Padding="5"
-                        BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FF8BD361" MinWidth="170" Grid.Row="4">
-                        <Button Content="Скачать отчет по всем тразакциям" FontSize="40" Margin="10,0,10,0" 
-                        x:Name="MoneyOperationsReportButton"  Click="MoneyOperationsReportButton_Click"  Padding="0,-2,0,0"/>
+                    <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="25" Padding="5"
+                        BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FFA7B1A1" MinWidth="170" Grid.Row="4" Margin="10">
+                        <Button Content="Скачать отчет по всем транзакциям" FontSize="40" Margin="10,0,10,0" 
+                            x:Name="MoneyOperationsReportButton"  Click="MoneyOperationsReportButton_Click"  Padding="0,-2,0,0"/>
                     </Border>
                 </Grid>
             </TabItem>

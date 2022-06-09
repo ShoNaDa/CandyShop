@@ -84,6 +84,8 @@ namespace Candy_shop
             ProductsDataGrid.ItemsSource = products;
         }
 
+        #region товары
+        //поступление товаров
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
             //проверка на заполнение полей
@@ -150,6 +152,7 @@ namespace Candy_shop
             }
         }
 
+        //списание товаров
         private void WithdrawProductButton_Click(object sender, RoutedEventArgs e)
         {
             //проверка на заполнение полей
@@ -198,6 +201,7 @@ namespace Candy_shop
             }
         }
 
+        //продажа товаров
         private void SaleProductButton_Click(object sender, RoutedEventArgs e)
         {
             //проверка на заполнение полей
@@ -253,7 +257,9 @@ namespace Candy_shop
                 MsgView("Все поля должны быть заполнены");
             }
         }
+        #endregion
 
+        //выход
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             isFirstOpening = true;
