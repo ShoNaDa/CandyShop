@@ -267,7 +267,7 @@
 
                             <Border HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="25" Padding="5"
                                 BorderThickness="3" BorderBrush="#FF9A5F9C" Background="#FFA7B1A1" MinWidth="170" Margin="10">
-                                <Button Content="Скачать отчет по смене" FontSize="40"   Margin="10,0,10,0" 
+                                <Button Content="Скачать отчет по дате" FontSize="40"   Margin="10,0,10,0" 
                                     x:Name="ShiftInDateReportButton"  Click="ShiftInDateReportButton_Click"  Padding="0,-2,0,0" Cursor="Hand"/>
                             </Border>
 

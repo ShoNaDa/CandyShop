@@ -20,18 +20,23 @@ namespace Candy_shop
         {
             InitializeComponent();
 
-            //заполняем список сотрудников
+            //заполняем списки сотрудников
             WorkersListBox.Items.Clear();
 
             foreach (var item in _context.Workers.ToList())
             {
                 WorkersListBox.Items.Add($"{item.WorkerCode}  |  {item.LastName} {item.FirstName} {item.MiddleName}");
+
+                if (item.WorkerCode.ToString().Substring(0, 1) == "Р")
+                {
+                    WorkersComboBox.Items.Add($"{item.WorkerCode}  |  {item.LastName} {item.FirstName} {item.MiddleName}");
+                }
             }
 
             //событие двойного нажатия мыши на ListBox
             WorkersListBox.MouseDoubleClick += new MouseButtonEventHandler(WorkersListBox_DoubleClick);
 
-            //заполняем список продуктов
+            //заполняем списки продуктов
             List<ProductsData> products = new List<ProductsData>();
 
             foreach (Products item in _context.Products.ToList())
@@ -44,6 +49,8 @@ namespace Candy_shop
                     nameOfManufacturer = _context.Manufacturers.ToList().FirstOrDefault(o => o.ManufacturerID == item.ManufacturerID_FK).NameOfManufacturer,
                     expirationDate = item.ExpirationDate
                 });
+
+                ProductsComboBox.Items.Add($"#{item.ProductID} {item.NameOfProduct}");
             }
             ProductsDataGrid.ItemsSource = products;
 
@@ -292,14 +299,14 @@ namespace Candy_shop
                   { 'E', "Расход денег" }, { 'F', "Денег в начале смены" } }, listWithInfo);
         }
 
-        //отчет по одной смене
+        //отчет по дате
         private void ShiftInDateReportButton_Click(object sender, RoutedEventArgs e)
         {
             if (DateOfShiftDatePicker.SelectedDate != null)
             {
                 //получаем номер смены по дате
                 int numberOfShift = _context.Shifts.ToList().FirstOrDefault(o => o.ShiftDate.ToShortDateString() ==
-                    Convert.ToDateTime(DateOfShiftDatePicker.SelectedDate).ToShortDateString()).ShiftID + 1;
+                    Convert.ToDateTime(DateOfShiftDatePicker.SelectedDate).ToShortDateString()).ShiftID;
 
                 List<List<string>> listWithInfo = new List<List<string>>();
 
@@ -346,7 +353,26 @@ namespace Candy_shop
         {
             if (WorkersComboBox.SelectedIndex != -1)
             {
+                //получаем ID сотрудника
+                int idWorker = _context.Workers.ToList().FirstOrDefault(o => o.WorkerCode == WorkersComboBox.Text.Split('|')[0].Trim()).WorkerID;
 
+                List<List<string>> listWithInfo = new List<List<string>>();
+
+                //создаем список для отчета
+                foreach (var item in _context.Shifts.ToList().Where(o => o.WorkerID_FK == idWorker).ToList())
+                {
+                    listWithInfo.Add(new List<string> {
+                    item.ShiftID.ToString(),
+                    item.ShiftDate.ToShortDateString().ToString(),
+                    Convert.ToDouble(item.ArriveOfMoney).ToString(),
+                    Convert.ToDouble(item.FlowOfNomey).ToString(),
+                    Convert.ToDouble(item.MoneyAtStartShift).ToString() });
+                }
+
+                //создаем сам отчет
+                CreateExcelFile($"Отчет {WorkersComboBox.Text.Split('|')[0].Trim()}", 5,
+                    new Dictionary<char, string> { { 'A',"Смена №" }, { 'B', "Дата" }, { 'C', "Приход денег" },
+                        { 'D', "Расход денег" }, { 'E', "Денег в начале смены" } }, listWithInfo);
             }
         }
 
@@ -355,14 +381,68 @@ namespace Candy_shop
         {
             if (ProductsComboBox.SelectedIndex != -1)
             {
+                //получаем ID товара
+                int idProduct = Convert.ToInt32(ProductsComboBox.Text.Split('#')[1].Split(' ')[0].Trim());
 
+                List<List<string>> listWithInfo = new List<List<string>>();
+
+                //создаем список для отчета
+                //сначала поступления
+                foreach (var item in _context.ReceiptsOfProducts.ToList().Where(o => o.ProductID_FK == idProduct).ToList())
+                {
+                    listWithInfo.Add(new List<string> {
+                    item.ShiftID_FK.ToString(),
+                    "Поступление",
+                    item.CountOfProducts.ToString(), 
+                    null });
+                }
+                
+                //потом продажи
+                foreach (var item in _context.SalesOfProducts.ToList().Where(o => o.ProductID_FK == idProduct).ToList())
+                {
+                    listWithInfo.Add(new List<string> {
+                    item.ShiftID_FK.ToString(),
+                    "Продажа",
+                    item.CountOfProducts.ToString(),
+                    null });
+                }
+                
+                //и в завершении списания
+                foreach (var item in _context.WritesOffOfProducts.ToList().Where(o => o.ProductID_FK == idProduct).ToList())
+                {
+                    listWithInfo.Add(new List<string> {
+                    item.ShiftID_FK.ToString(),
+                    "Списание",
+                    item.CountOfProducts.ToString(),
+                    item.Info});
+                }
+
+                //создаем сам отчет
+                CreateExcelFile($"Отчет {_context.Products.ToList().FirstOrDefault(o => o.ProductID == idProduct).NameOfProduct}", 4,
+                    new Dictionary<char, string> { { 'A',"Смена №" }, { 'B', "Операция" }, { 'C', "Количество" }, { 'D', "Доп инфо (если есть)" } }, listWithInfo);
             }
         }
 
         //отчет по транзакциям
         private void MoneyOperationsReportButton_Click(object sender, RoutedEventArgs e)
         {
+            List<List<string>> listWithInfo = new List<List<string>>();
 
+            //создаем список для отчета
+            foreach (var item in _context.MoneyTransactions.ToList())
+            {
+                listWithInfo.Add(new List<string> {
+                    item.DateOfOperation.ToShortDateString().ToString(),
+                    _context.Workers.ToList().FirstOrDefault(o => o.WorkerID == item.WorkerID_FK).LastName + " " +
+                    _context.Workers.ToList().FirstOrDefault(o => o.WorkerID == item.WorkerID_FK).FirstName + " " +
+                    _context.Workers.ToList().FirstOrDefault(o => o.WorkerID == item.WorkerID_FK).MiddleName,
+                    Convert.ToDouble(item.Deposits).ToString(),
+                    Convert.ToDouble(item.Withdrawals).ToString() });
+            }
+
+            //создаем сам отчет
+            CreateExcelFile("Отчет по всем транзакциям", 4,
+                new Dictionary<char, string> { { 'A', "Дата" }, { 'B', "Сотрудник" }, { 'C', "Внесения" }, { 'D', "Изъятия" } }, listWithInfo);
         }
         #endregion
     }

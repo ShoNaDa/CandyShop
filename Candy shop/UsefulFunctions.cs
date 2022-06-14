@@ -93,10 +93,12 @@ namespace Candy_shop
                 {
                     int j = 0;
 
+                    var oneString = listWithInfo[i];
+
                     //заполняем строку файла
-                    foreach (List<string> item in listWithInfo)
+                    foreach (var item in oneString)
                     {
-                        worksheet.Range[$"{listOfKeys[j]}{i + 2}"].Value = item[j];
+                        worksheet.Range[$"{listOfKeys[j]}{i + 2}"].Value = item;
 
                         j++;
                     }
@@ -108,9 +110,10 @@ namespace Candy_shop
                     worksheet.Columns[i].AutoFit();
                 }
 
-                //ставим выравнивание заголовков по центру и жирным шрифтом
+                //ставим выравнивание заголовков по центру, жирным шрифтом, а также выравнивание по тексту
                 worksheet.get_Range($"{listOfKeys[0]}1", $"{listOfKeys[listOfKeys.Count - 1]}1").Cells.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
                 worksheet.get_Range($"{listOfKeys[0]}1", $"{listOfKeys[listOfKeys.Count - 1]}1").Cells.Font.Bold = true;
+                worksheet.Columns.AutoFit();
 
                 //сохраняем файл
                 workbook.SaveAs(excelFile.FileName);
