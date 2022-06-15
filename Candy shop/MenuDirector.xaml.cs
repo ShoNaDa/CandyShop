@@ -73,12 +73,6 @@ namespace Candy_shop
             OpenWindow(new AddWorker(), this);
         }
 
-        //редактировать сотрудника
-        private void EditWorkerButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         //удалить сотрудника
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
