@@ -89,13 +89,30 @@ namespace Candy_shop
                 }
                 if (isMayDelete)
                 {
-                    //теперь нужно удалить все ключи, а затем удалить сотрудника
                     string codeSelectWorker = WorkersListBox.SelectedValue.ToString().Split('|')[0].Trim();
 
                     //находим выбранного сотрудника в БД
                     Workers worker = _context.Workers.ToList().FirstOrDefault(o => o.WorkerCode == codeSelectWorker);
 
-                    //удаляем
+                    //теперь нужно удалить все значения с ключами, а затем удалить сотрудника
+                    if (WorkersListBox.SelectedValue.ToString().Substring(0, 1) == "А")
+                    {
+                        foreach (var item in _context.MoneyTransactions.ToList().Where(o => o.WorkerID_FK == worker.WorkerID).ToList())
+                        {
+                            _context.MoneyTransactions.Remove(item);
+                            _context.SaveChanges();
+                        }
+                    }
+                    else if (WorkersListBox.SelectedValue.ToString().Substring(0, 1) == "Р")
+                    {
+                        foreach (var item in _context.Shifts.ToList().Where(o => o.WorkerID_FK == worker.WorkerID).ToList())
+                        {
+                            _context.Shifts.Remove(item);
+                            _context.SaveChanges();
+                        }
+                    }
+
+                    //наконец удаляем сотрудника
                     _context.Workers.Remove(worker);
                     _context.SaveChanges();
 
