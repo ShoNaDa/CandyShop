@@ -78,16 +78,29 @@ namespace Candy_shop
         {
             if (WorkersListBox.SelectedIndex != -1)
             {
-                string codeSelectWorker = WorkersListBox.SelectedValue.ToString().Split('|')[0].Trim();
+                bool isMayDelete = true;
 
-                //находим выбранного сотрудника в БД
-                Workers worker = _context.Workers.ToList().FirstOrDefault(o => o.WorkerCode == codeSelectWorker);
+                //проверка, чтоб не удалили всех админов
+                if (WorkersListBox.SelectedValue.ToString().Substring(0, 1) == "А" && _context.Workers.ToList().Where(o => o.Post == "Администратор").ToList().Count == 1)
+                {
+                    isMayDelete = false;
 
-                //удаляем
-                _context.Workers.Remove(worker);
-                _context.SaveChanges();
+                    MsgView("Нельзя удалить всех администраторов");
+                }
+                if (isMayDelete)
+                {
+                    //теперь нужно удалить все ключи, а затем удалить сотрудника
+                    string codeSelectWorker = WorkersListBox.SelectedValue.ToString().Split('|')[0].Trim();
 
-                OpenWindow(new MenuDirector(), this);
+                    //находим выбранного сотрудника в БД
+                    Workers worker = _context.Workers.ToList().FirstOrDefault(o => o.WorkerCode == codeSelectWorker);
+
+                    //удаляем
+                    _context.Workers.Remove(worker);
+                    _context.SaveChanges();
+
+                    OpenWindow(new MenuDirector(), this);
+                }
             }
             else
             {
