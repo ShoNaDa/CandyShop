@@ -61,9 +61,9 @@ namespace Candy_shop
 
             MoneyInCashRegisterLabel.Content = Convert.ToDouble(_context.CashRegister.ToList().FirstOrDefault().MoneyInCashRegister) + " руб";
 
-            ArriveTextBlock.Text = $"{Convert.ToDouble(_context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == _context.Shifts.ToList().Count).ArriveOfMoney)} руб";
+            ArriveTextBlock.Text = $"{Convert.ToDouble(_context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == _context.Shifts.ToList().Max(p => p.ShiftID)).ArriveOfMoney)} руб";
 
-            FlowTextBlock.Text = $"{Convert.ToDouble(_context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == _context.Shifts.ToList().Count).FlowOfNomey)} руб";
+            FlowTextBlock.Text = $"{Convert.ToDouble(_context.Shifts.ToList().FirstOrDefault(o => o.ShiftID == _context.Shifts.ToList().Max(p => p.ShiftID)).FlowOfNomey)} руб";
 
             //заполняем товары
             List<ProductsDataForSaler> products = new List<ProductsDataForSaler>();

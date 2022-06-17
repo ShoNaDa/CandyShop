@@ -89,34 +89,23 @@ namespace Candy_shop
                 }
                 if (isMayDelete)
                 {
-                    string codeSelectWorker = WorkersListBox.SelectedValue.ToString().Split('|')[0].Trim();
-
-                    //находим выбранного сотрудника в БД
-                    Workers worker = _context.Workers.ToList().FirstOrDefault(o => o.WorkerCode == codeSelectWorker);
-
-                    //теперь нужно удалить все значения с ключами, а затем удалить сотрудника
-                    if (WorkersListBox.SelectedValue.ToString().Substring(0, 1) == "А")
+                    try
                     {
-                        foreach (var item in _context.MoneyTransactions.ToList().Where(o => o.WorkerID_FK == worker.WorkerID).ToList())
-                        {
-                            _context.MoneyTransactions.Remove(item);
-                            _context.SaveChanges();
-                        }
+                        string codeSelectWorker = WorkersListBox.SelectedValue.ToString().Split('|')[0].Trim();
+
+                        //находим выбранного сотрудника в БД
+                        Workers worker = _context.Workers.ToList().FirstOrDefault(o => o.WorkerCode == codeSelectWorker);
+
+                        //наконец удаляем сотрудника
+                        _context.Workers.Remove(worker);
+                        _context.SaveChanges();
+
+                        OpenWindow(new MenuDirector(), this);
                     }
-                    else if (WorkersListBox.SelectedValue.ToString().Substring(0, 1) == "Р")
+                    catch
                     {
-                        foreach (var item in _context.Shifts.ToList().Where(o => o.WorkerID_FK == worker.WorkerID).ToList())
-                        {
-                            _context.Shifts.Remove(item);
-                            _context.SaveChanges();
-                        }
+                        MsgView("Этого сотрудника нельзя удалить");
                     }
-
-                    //наконец удаляем сотрудника
-                    _context.Workers.Remove(worker);
-                    _context.SaveChanges();
-
-                    OpenWindow(new MenuDirector(), this);
                 }
             }
             else
@@ -149,17 +138,24 @@ namespace Candy_shop
         {
             if (ProductsDataGrid.SelectedIndex != -1)
             {
-                //получаем строку, которая была выделена
-                ProductsData selectedString = (ProductsData)ProductsDataGrid.SelectedItem;
+                try
+                {
+                    //получаем строку, которая была выделена
+                    ProductsData selectedString = (ProductsData)ProductsDataGrid.SelectedItem;
 
-                //находим выбранный продукт в БД
-                Products product = _context.Products.ToList().FirstOrDefault(o => o.ProductID == selectedString.productID);
+                    //находим выбранный продукт в БД
+                    Products product = _context.Products.ToList().FirstOrDefault(o => o.ProductID == selectedString.productID);
 
-                //удаляем
-                _context.Products.Remove(product);
-                _context.SaveChanges();
+                    //удаляем
+                    _context.Products.Remove(product);
+                    _context.SaveChanges();
 
-                OpenWindow(new MenuDirector(), this);
+                    OpenWindow(new MenuDirector(), this);
+                }
+                catch
+                {
+                    MsgView("Этот товар нельзя удалить");
+                }
             }
             else
             {
@@ -223,15 +219,22 @@ namespace Candy_shop
         {
             if (ManufacturerListBox.SelectedIndex != -1)
             {
-                //находим выбранного сотрудника в БД
-                Manufacturers manufacturer = _context.Manufacturers.ToList()
-                    .FirstOrDefault(o => o.NameOfManufacturer == ManufacturerListBox.SelectedValue.ToString());
+                try
+                {
+                    //находим выбранного сотрудника в БД
+                    Manufacturers manufacturer = _context.Manufacturers.ToList()
+                        .FirstOrDefault(o => o.NameOfManufacturer == ManufacturerListBox.SelectedValue.ToString());
 
-                //удаляем
-                _context.Manufacturers.Remove(manufacturer);
-                _context.SaveChanges();
+                    //удаляем
+                    _context.Manufacturers.Remove(manufacturer);
+                    _context.SaveChanges();
 
-                OpenWindow(new MenuDirector(), this);
+                    OpenWindow(new MenuDirector(), this);
+                }
+                catch
+                {
+                    MsgView("Этого производителя нельзя удалить");
+                }
             }
             else
             {

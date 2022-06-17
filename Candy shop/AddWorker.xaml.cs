@@ -139,24 +139,30 @@ namespace Candy_shop
                                                 break;
                                             }
                                         }
-
-                                        //добавление в БД
-                                        _context.Workers.Add(new Workers
+                                        try
                                         {
-                                            WorkerCode = uniqueCode,
-                                            WorkerPassword = Hash(passwordTextBox.Password),
-                                            LastName = lNameTextBox.Text.Trim(),
-                                            FirstName = fNameTextBox.Text.Trim(),
-                                            MiddleName = mNameTextBox.Text.Trim(),
-                                            Post = postComboBox.Text.Trim(),
-                                            Photo = imageSource,
-                                            Phone = $"+7{phone1TextBox.Text}{phone2TextBox.Text}{phone3TextBox.Text}{phone4TextBox.Text}",
-                                            Birthday = Convert.ToDateTime($"{dayTextBox.Text}.{monthTextBox.Text}.{yearTextBox.Text}")
-                                        });
-                                        // Сохранить изменения в базе данных
-                                        _context.SaveChanges();
+                                            //добавление в БД
+                                            _context.Workers.Add(new Workers
+                                            {
+                                                WorkerCode = uniqueCode,
+                                                WorkerPassword = Hash(passwordTextBox.Password),
+                                                LastName = lNameTextBox.Text.Trim(),
+                                                FirstName = fNameTextBox.Text.Trim(),
+                                                MiddleName = mNameTextBox.Text.Trim(),
+                                                Post = postComboBox.Text.Trim(),
+                                                Photo = imageSource,
+                                                Phone = $"+7{phone1TextBox.Text}{phone2TextBox.Text}{phone3TextBox.Text}{phone4TextBox.Text}",
+                                                Birthday = Convert.ToDateTime($"{dayTextBox.Text}.{monthTextBox.Text}.{yearTextBox.Text}")
+                                            });
+                                            // Сохранить изменения в базе данных
+                                            _context.SaveChanges();
 
-                                        OpenWindow(new GetCode(), this);
+                                            OpenWindow(new GetCode(), this);
+                                        }
+                                        catch
+                                        {
+                                            MsgView("Вы допустили ошибку");
+                                        }
                                     }
                                     else
                                     {
